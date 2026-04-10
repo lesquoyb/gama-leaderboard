@@ -1,0 +1,19 @@
+{
+  "$schema_comment": "Configure repos to analyze. Either set 'org' to analyze all repos of an organization, OR list explicit repos. 'since' can be an ISO date OR a commit SHA per repo (overrides global).",
+  "org": "gama-platform",
+  "repos": [],
+  "since": "2024-01-01T00:00:00Z",
+  "repo_overrides": {
+    "gama-platform/gama": { "since": "2024-01-01T00:00:00Z" },
+    "gama-platform/gama.wiki": { "since": "2024-01-01T00:00:00Z" }
+  },
+  "metrics": {
+    "java_extensions": [".java"],
+    "gaml_extensions": [".gaml", ".experiment"],
+    "wiki_repos_suffix": ".wiki",
+    "wiki_extensions": [".md", ".markdown"]
+  },
+  "exclude_repos": [],
+  "exclude_bots": true,
+  "max_commits_per_repo": 2000
+}

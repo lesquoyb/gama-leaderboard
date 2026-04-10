@@ -1,0 +1,39 @@
+{
+  "generated_at": "1970-01-01T00:00:00Z",
+  "config": { "org": "gama-platform", "repos": [], "since": "2024-01-01T00:00:00Z" },
+  "metrics": [
+    "commits", "java_lines", "gaml_lines", "wiki_lines",
+    "issues_opened", "issues_closed", "prs_opened", "prs_merged"
+  ],
+  "months": ["2024-01", "2024-02", "2024-03", "2024-04"],
+  "users": [
+    {
+      "login": "alice",
+      "avatar_url": "https://github.com/github.png",
+      "html_url": "https://github.com/alice",
+      "commits": 42, "java_lines": 1200, "gaml_lines": 300, "wiki_lines": 80,
+      "issues_opened": 4, "issues_closed": 3, "prs_opened": 6, "prs_merged": 5,
+      "global_score": 0.85,
+      "timeline": {
+        "2024-01": {"commits": 10, "java_lines": 300, "gaml_lines": 50, "wiki_lines": 10, "issues_opened": 1, "issues_closed": 0, "prs_opened": 2, "prs_merged": 1},
+        "2024-02": {"commits": 12, "java_lines": 400, "gaml_lines": 80, "wiki_lines": 20, "issues_opened": 1, "issues_closed": 1, "prs_opened": 1, "prs_merged": 1},
+        "2024-03": {"commits": 9,  "java_lines": 250, "gaml_lines": 70, "wiki_lines": 30, "issues_opened": 1, "issues_closed": 1, "prs_opened": 2, "prs_merged": 2},
+        "2024-04": {"commits": 11, "java_lines": 250, "gaml_lines": 100,"wiki_lines": 20, "issues_opened": 1, "issues_closed": 1, "prs_opened": 1, "prs_merged": 1}
+      }
+    },
+    {
+      "login": "bob",
+      "avatar_url": "https://github.com/github.png",
+      "html_url": "https://github.com/bob",
+      "commits": 25, "java_lines": 400, "gaml_lines": 900, "wiki_lines": 200,
+      "issues_opened": 8, "issues_closed": 2, "prs_opened": 3, "prs_merged": 2,
+      "global_score": 0.55,
+      "timeline": {
+        "2024-01": {"commits": 5, "java_lines": 100, "gaml_lines": 200, "wiki_lines": 50, "issues_opened": 2, "issues_closed": 0, "prs_opened": 1, "prs_merged": 0},
+        "2024-02": {"commits": 6, "java_lines": 80,  "gaml_lines": 220, "wiki_lines": 50, "issues_opened": 2, "issues_closed": 1, "prs_opened": 1, "prs_merged": 1},
+        "2024-03": {"commits": 7, "java_lines": 120, "gaml_lines": 240, "wiki_lines": 50, "issues_opened": 2, "issues_closed": 1, "prs_opened": 0, "prs_merged": 0},
+        "2024-04": {"commits": 7, "java_lines": 100, "gaml_lines": 240, "wiki_lines": 50, "issues_opened": 2, "issues_closed": 0, "prs_opened": 1, "prs_merged": 1}
+      }
+    }
+  ]
+}

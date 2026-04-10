@@ -1,19 +1,19 @@
 {
-  "$schema_comment": "Configure repos to analyze. Either set 'org' to analyze all repos of an organization, OR list explicit repos. 'since' can be an ISO date OR a commit SHA per repo (overrides global).",
+  "$schema_comment": "org or repos to analyze. 'since' is the global start date (ISO). repo_overrides[repo].since may be an ISO date OR a 40-char commit SHA (resolved to its timestamp). wiki_repos lists BASE repo names (without .wiki) whose wiki should be cloned via https://github.com/<name>.wiki.git. author_map maps a git email OR a git name to a canonical GitHub login, to merge contributors whose commits aren't linked to a GitHub account.",
   "org": "gama-platform",
   "repos": [],
   "since": "2024-01-01T00:00:00Z",
   "repo_overrides": {
-    "gama-platform/gama": { "since": "2024-01-01T00:00:00Z" },
-    "gama-platform/gama.wiki": { "since": "2024-01-01T00:00:00Z" }
+    "gama-platform/gama": { "since": "2024-01-01T00:00:00Z" }
   },
+  "wiki_repos": ["gama-platform/gama"],
+  "author_map": {},
   "metrics": {
     "java_extensions": [".java"],
     "gaml_extensions": [".gaml", ".experiment"],
-    "wiki_repos_suffix": ".wiki",
     "wiki_extensions": [".md", ".markdown"]
   },
-  "exclude_repos": [],
+  "exclude_repos": ["gama-platform/gama.wiki"],
   "exclude_bots": true,
   "max_commits_per_repo": 2000
 }

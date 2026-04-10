@@ -1,24 +1,41 @@
 #!/usr/bin/env python3
 """
-Build a GitHub leaderboard JSON file from public GitHub API data.
+Build a GitHub leaderboard JSON file.
 
-Metrics per user (aggregated AND bucketed by month in `timeline`):
-  - commits
-  - java_lines, gaml_lines, wiki_lines
-  - issues_opened, issues_closed
-  - prs_opened, prs_merged
-  - global_score (normalized mean of all metrics, computed on totals)
+Data sources
+------------
+- GitHub REST API: commits, issues, pull requests for every configured repo.
+- Local `git clone` of every wiki listed in config.wiki_repos (URL format:
+  https://github.com/<owner>/<repo>.wiki.git). Wikis are not exposed by the
+  REST API so we must parse git log --numstat locally.
 
-Reads config.json at repo root, writes site/data.json.
-Auth: set GITHUB_TOKEN env var (uses unauthenticated API otherwise).
+Per-user metrics (also bucketed by week and by repo)
+----------------------------------------------------
+  commits, java_lines, gaml_lines, wiki_lines,
+  issues_opened, issues_closed, prs_opened, prs_merged,
+  global_score (normalized mean, computed on totals).
+
+Bug-fixes compared to the previous monthly version
+--------------------------------------------------
+* Merge commits are skipped (`parents` length > 1). Counting them inflated
+  java_lines and gaml_lines massively because merge commits expose the full
+  symmetric diff of the two branches.
+* Author resolution no longer silently falls back to the git *name* when the
+  GitHub login is missing — that used to split one user across two keys
+  ("John Doe" and "johndoe"). We now resolve via config.author_map by email
+  then by name, and only then fall back to email as a last-resort id.
+* line counts = additions + deletions on the target extension, exactly what
+  the UI labels as "lines touched".
 """
 from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
+import tempfile
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import urlencode
@@ -31,7 +48,7 @@ OUTPUT_PATH = ROOT / "docs" / "data.json"
 
 API = "https://api.github.com"
 TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
-UA = "gama-leaderboard-builder/1.0"
+UA = "gama-leaderboard-builder/2.0"
 
 METRICS = [
     "commits",
@@ -108,7 +125,7 @@ def gh_paginate(url: str, params: dict | None = None, max_pages: int = 200) -> I
 
 
 # ---------------------------------------------------------------------------
-# Config
+# Config helpers
 # ---------------------------------------------------------------------------
 
 def load_config() -> dict:
@@ -144,7 +161,6 @@ def since_for(repo: str, cfg: dict) -> str | None:
 
 
 def resolve_since(repo: str, raw: str | None) -> str | None:
-    """Resolve an ISO date string OR a 40-char commit SHA to an ISO timestamp."""
     if not raw:
         return None
     if len(raw) == 40 and all(c in "0123456789abcdef" for c in raw.lower()):
@@ -156,19 +172,49 @@ def resolve_since(repo: str, raw: str | None) -> str | None:
 
 
 # ---------------------------------------------------------------------------
-# Aggregation helpers
+# Author / bucket helpers
 # ---------------------------------------------------------------------------
 
 def is_bot(login: str) -> bool:
     if not login:
         return True
-    return login.endswith("[bot]") or login in {"web-flow", "github-actions"}
+    low = login.lower()
+    return (
+        login.endswith("[bot]")
+        or login in {"web-flow", "github-actions"}
+        or "bot" in low and low.endswith("bot")
+    )
 
 
-def classify(filename: str, cfg: dict, is_wiki_repo: bool) -> str | None:
+def resolve_author(
+    login: str | None,
+    email: str | None,
+    name: str | None,
+    author_map: dict,
+) -> str | None:
+    """Produce a stable canonical id for a contributor.
+
+    Precedence:
+      1. GitHub login (if the commit is linked to a GitHub account)
+      2. author_map[email] / author_map[name] (manual override)
+      3. email
+      4. name (last resort)
+    """
+    if login:
+        return login
+    if email and email in author_map:
+        return author_map[email]
+    if name and name in author_map:
+        return author_map[name]
+    if email:
+        return email
+    if name:
+        return name
+    return None
+
+
+def classify(filename: str, cfg: dict) -> str | None:
     m = cfg.get("metrics", {})
-    if is_wiki_repo:
-        return "wiki_lines"
     for ext in m.get("java_extensions", [".java"]):
         if filename.endswith(ext):
             return "java_lines"
@@ -178,116 +224,247 @@ def classify(filename: str, cfg: dict, is_wiki_repo: bool) -> str | None:
     return None
 
 
+def week_of(iso: str) -> str:
+    """Return the Monday (YYYY-MM-DD) of the week containing the given ISO dt."""
+    if not iso:
+        return "0000-00-00"
+    s = iso.replace("Z", "+00:00")
+    try:
+        d = datetime.fromisoformat(s).date()
+    except ValueError:
+        try:
+            d = datetime.fromisoformat(s[:10]).date()
+        except ValueError:
+            return "0000-00-00"
+    monday = d - timedelta(days=d.weekday())
+    return monday.isoformat()
+
+
 def new_user() -> dict:
     return {
         "avatar_url": "",
         "html_url": "",
-        "timeline": {},  # "YYYY-MM" -> {metric: int}
+        "timeline": {},   # week (YYYY-MM-DD) -> { metric: int }
+        "per_repo": {},   # repo (owner/name) -> { metric: int }
     }
 
 
-def bump(user: dict, month: str, metric: str, amount: int = 1) -> None:
-    bucket = user["timeline"].setdefault(month, {m: 0 for m in METRICS})
-    bucket[metric] += amount
-
-
-def month_of(iso: str) -> str:
-    # "2024-03-15T12:00:00Z" -> "2024-03"
-    return iso[:7]
-
-
-def iso_geq(a: str | None, b: str | None) -> bool:
-    if not b:
-        return True
-    return (a or "") >= b
+def bump(user: dict, week: str, repo: str, metric: str, amount: int = 1) -> None:
+    if amount == 0:
+        return
+    tl = user["timeline"].setdefault(week, {m: 0 for m in METRICS})
+    tl[metric] += amount
+    pr = user["per_repo"].setdefault(repo, {m: 0 for m in METRICS})
+    pr[metric] += amount
 
 
 # ---------------------------------------------------------------------------
-# Per-repo processing
+# Per-repo processing (commits / issues / PRs via REST API)
 # ---------------------------------------------------------------------------
 
-def process_commits(repo: str, cfg: dict, users: dict[str, dict], since: str | None) -> None:
-    owner, name = repo.split("/", 1)
-    is_wiki = name.endswith(cfg.get("metrics", {}).get("wiki_repos_suffix", ".wiki"))
+def process_commits(
+    repo: str, cfg: dict, users: dict[str, dict], since: str | None
+) -> dict:
+    author_map = cfg.get("author_map") or {}
     params: dict = {}
     if since:
         params["since"] = since
     print(f"[info] {repo}: commits since {params.get('since', 'ALL')}", file=sys.stderr)
     max_commits = cfg.get("max_commits_per_repo", 2000)
-    count = 0
+
+    stats = {"fetched": 0, "merges_skipped": 0, "no_author": 0, "java": 0, "gaml": 0}
+
     for commit in gh_paginate(f"{API}/repos/{repo}/commits", params):
-        if count >= max_commits:
+        if stats["fetched"] >= max_commits:
             print(f"[warn] {repo}: hit max_commits cap ({max_commits})", file=sys.stderr)
             break
-        count += 1
-        author = commit.get("author") or {}
-        login = author.get("login") or (commit.get("commit", {}).get("author", {}).get("name", ""))
-        if not login or (cfg.get("exclude_bots", True) and is_bot(login)):
-            continue
-        u = users.setdefault(login, new_user())
-        if author.get("avatar_url"):
-            u["avatar_url"] = author["avatar_url"]
-            u["html_url"] = author.get("html_url", "")
+        stats["fetched"] += 1
 
-        date = commit.get("commit", {}).get("author", {}).get("date", "")
-        month = month_of(date) if date else "0000-00"
-        bump(u, month, "commits", 1)
+        # BUG FIX #1: skip merge commits — their diff is the symmetric branch
+        # diff and would be double-counted against the author.
+        if len(commit.get("parents") or []) > 1:
+            stats["merges_skipped"] += 1
+            continue
+
+        api_author = commit.get("author") or {}
+        git_author = (commit.get("commit") or {}).get("author") or {}
+        login = api_author.get("login")
+        email = git_author.get("email") or ""
+        name = git_author.get("name") or ""
+
+        canonical = resolve_author(login, email, name, author_map)
+        if not canonical:
+            stats["no_author"] += 1
+            continue
+        if cfg.get("exclude_bots", True) and is_bot(canonical):
+            continue
+
+        u = users.setdefault(canonical, new_user())
+        if api_author.get("avatar_url") and not u["avatar_url"]:
+            u["avatar_url"] = api_author["avatar_url"]
+            u["html_url"] = api_author.get("html_url", "")
+
+        date = git_author.get("date", "")
+        week = week_of(date)
+        bump(u, week, repo, "commits", 1)
 
         sha = commit["sha"]
         detail, _ = gh_request(f"{API}/repos/{repo}/commits/{sha}")
         if not detail:
             continue
         for f in detail.get("files", []) or []:
-            bucket = classify(f.get("filename", ""), cfg, is_wiki)
+            bucket = classify(f.get("filename", ""), cfg)
             if not bucket:
                 continue
             changes = int(f.get("additions", 0)) + int(f.get("deletions", 0))
-            bump(u, month, bucket, changes)
+            bump(u, week, repo, bucket, changes)
+            if bucket == "java_lines":
+                stats["java"] += changes
+            elif bucket == "gaml_lines":
+                stats["gaml"] += changes
+
+    print(
+        f"[stats] {repo}: {stats['fetched']} commits "
+        f"({stats['merges_skipped']} merges skipped, "
+        f"{stats['no_author']} unattributed), "
+        f"java={stats['java']} gaml={stats['gaml']}",
+        file=sys.stderr,
+    )
+    return stats
 
 
-def process_issues(repo: str, cfg: dict, users: dict[str, dict], since: str | None) -> None:
-    # /issues returns both issues AND PRs; we split them here.
+def process_issues(
+    repo: str, cfg: dict, users: dict[str, dict], since: str | None
+) -> None:
+    author_map = cfg.get("author_map") or {}
     params = {"state": "all", "filter": "all"}
     if since:
         params["since"] = since
     print(f"[info] {repo}: issues", file=sys.stderr)
     for issue in gh_paginate(f"{API}/repos/{repo}/issues", params):
         if "pull_request" in issue:
-            continue  # PRs handled in process_prs
+            continue
         created = issue.get("created_at") or ""
         if since and created < since:
             continue
-        user = (issue.get("user") or {}).get("login")
-        if not user or (cfg.get("exclude_bots", True) and is_bot(user)):
+        api_user = issue.get("user") or {}
+        canonical = resolve_author(api_user.get("login"), None, None, author_map)
+        if not canonical or (cfg.get("exclude_bots", True) and is_bot(canonical)):
             continue
-        u = users.setdefault(user, new_user())
-        if not u["avatar_url"]:
-            u["avatar_url"] = (issue.get("user") or {}).get("avatar_url", "")
-            u["html_url"] = (issue.get("user") or {}).get("html_url", "")
-        bump(u, month_of(created), "issues_opened", 1)
+        u = users.setdefault(canonical, new_user())
+        if not u["avatar_url"] and api_user.get("avatar_url"):
+            u["avatar_url"] = api_user["avatar_url"]
+            u["html_url"] = api_user.get("html_url", "")
+        bump(u, week_of(created), repo, "issues_opened", 1)
         if issue.get("state") == "closed" and issue.get("closed_at"):
-            bump(u, month_of(issue["closed_at"]), "issues_closed", 1)
+            bump(u, week_of(issue["closed_at"]), repo, "issues_closed", 1)
 
 
-def process_prs(repo: str, cfg: dict, users: dict[str, dict], since: str | None) -> None:
-    # /pulls doesn't support ?since so we iterate sorted desc and stop early.
-    print(f"[info] {repo}: pulls", file=sys.stderr)
+def process_prs(
+    repo: str, cfg: dict, users: dict[str, dict], since: str | None
+) -> None:
+    author_map = cfg.get("author_map") or {}
     params = {"state": "all", "sort": "created", "direction": "desc"}
+    print(f"[info] {repo}: pulls", file=sys.stderr)
     for pr in gh_paginate(f"{API}/repos/{repo}/pulls", params):
         created = pr.get("created_at") or ""
         if since and created < since:
-            break  # list is sorted desc — safe to stop
-        user = (pr.get("user") or {}).get("login")
-        if not user or (cfg.get("exclude_bots", True) and is_bot(user)):
+            break
+        api_user = pr.get("user") or {}
+        canonical = resolve_author(api_user.get("login"), None, None, author_map)
+        if not canonical or (cfg.get("exclude_bots", True) and is_bot(canonical)):
             continue
-        u = users.setdefault(user, new_user())
-        if not u["avatar_url"]:
-            u["avatar_url"] = (pr.get("user") or {}).get("avatar_url", "")
-            u["html_url"] = (pr.get("user") or {}).get("html_url", "")
-        bump(u, month_of(created), "prs_opened", 1)
+        u = users.setdefault(canonical, new_user())
+        if not u["avatar_url"] and api_user.get("avatar_url"):
+            u["avatar_url"] = api_user["avatar_url"]
+            u["html_url"] = api_user.get("html_url", "")
+        bump(u, week_of(created), repo, "prs_opened", 1)
         merged_at = pr.get("merged_at")
         if merged_at:
-            bump(u, month_of(merged_at), "prs_merged", 1)
+            bump(u, week_of(merged_at), repo, "prs_merged", 1)
+
+
+# ---------------------------------------------------------------------------
+# Wiki processing (git clone + git log)
+# ---------------------------------------------------------------------------
+
+def process_wiki_clone(
+    base_repo: str, cfg: dict, users: dict[str, dict], since: str | None
+) -> None:
+    wiki_url = f"https://github.com/{base_repo}.wiki.git"
+    wiki_label = f"{base_repo}.wiki"
+    author_map = cfg.get("author_map") or {}
+    print(f"[info] cloning wiki {wiki_url}", file=sys.stderr)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            subprocess.run(
+                ["git", "clone", "--quiet", "--filter=blob:none", wiki_url, tmp],
+                check=True, capture_output=True, text=True, timeout=600,
+            )
+        except subprocess.CalledProcessError as e:
+            err = (e.stderr or "").strip().splitlines()[-1:]
+            print(f"[warn] wiki clone failed for {base_repo}: {err}", file=sys.stderr)
+            return
+        except subprocess.TimeoutExpired:
+            print(f"[warn] wiki clone timed out for {base_repo}", file=sys.stderr)
+            return
+
+        log_args = [
+            "git", "-C", tmp, "log",
+            "--no-merges",
+            "--numstat",
+            "--date=iso-strict",
+            "--pretty=format:__C__%H|%an|%ae|%aI",
+        ]
+        if since:
+            log_args.extend(["--since", since])
+        try:
+            result = subprocess.run(
+                log_args, capture_output=True, text=True, check=True, timeout=300
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"[warn] wiki git log failed for {base_repo}: {e.stderr}", file=sys.stderr)
+            return
+
+        current_user = None
+        current_week = None
+        commits = 0
+        lines = 0
+        for line in result.stdout.splitlines():
+            if not line.strip():
+                continue
+            if line.startswith("__C__"):
+                rest = line[len("__C__"):]
+                parts = rest.split("|", 3)
+                if len(parts) < 4:
+                    current_user = None
+                    continue
+                _sha, name, email, date = parts
+                canonical = resolve_author(None, email, name, author_map)
+                if not canonical or (cfg.get("exclude_bots", True) and is_bot(canonical)):
+                    current_user = None
+                    continue
+                current_user = users.setdefault(canonical, new_user())
+                current_week = week_of(date)
+                bump(current_user, current_week, wiki_label, "commits", 1)
+                commits += 1
+            else:
+                if not current_user:
+                    continue
+                parts = line.split("\t")
+                if len(parts) < 3:
+                    continue
+                adds, dels, _path = parts[0], parts[1], parts[2]
+                if adds == "-" or dels == "-":
+                    continue  # binary file
+                try:
+                    total = int(adds) + int(dels)
+                except ValueError:
+                    continue
+                bump(current_user, current_week, wiki_label, "wiki_lines", total)
+                lines += total
+        print(f"[stats] {wiki_label}: {commits} commits, {lines} wiki lines", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -296,9 +473,9 @@ def process_prs(repo: str, cfg: dict, users: dict[str, dict], since: str | None)
 
 def totals_from_timeline(timeline: dict) -> dict:
     out = {m: 0 for m in METRICS}
-    for month_data in timeline.values():
+    for week_data in timeline.values():
         for m in METRICS:
-            out[m] += month_data.get(m, 0)
+            out[m] += week_data.get(m, 0)
     return out
 
 
@@ -319,7 +496,8 @@ def main() -> int:
         print("[warn] no GITHUB_TOKEN set — using unauthenticated API (60 req/h)", file=sys.stderr)
 
     repos = resolve_repos(cfg)
-    print(f"[info] {len(repos)} repo(s) to analyze", file=sys.stderr)
+    wiki_repos = cfg.get("wiki_repos") or []
+    print(f"[info] {len(repos)} api repo(s), {len(wiki_repos)} wiki(s)", file=sys.stderr)
 
     users: dict[str, dict] = {}
     for repo in repos:
@@ -332,18 +510,28 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             print(f"[error] {repo}: {e}", file=sys.stderr)
 
-    # Build flat user records with totals + keep timeline for UI filtering.
-    users_list = []
-    all_months: set[str] = set()
+    for base_repo in wiki_repos:
+        try:
+            since = resolve_since(base_repo, since_for(base_repo, cfg))
+            process_wiki_clone(base_repo, cfg, users, since)
+        except Exception as e:  # noqa: BLE001
+            print(f"[error] wiki {base_repo}: {e}", file=sys.stderr)
+
+    # Build user records with totals.
+    users_list: list[dict] = []
+    all_weeks: set[str] = set()
+    all_repos: set[str] = set()
     for login, data in users.items():
         totals = totals_from_timeline(data["timeline"])
-        all_months.update(data["timeline"].keys())
+        all_weeks.update(data["timeline"].keys())
+        all_repos.update(data["per_repo"].keys())
         users_list.append({
             "login": login,
             "avatar_url": data["avatar_url"],
             "html_url": data["html_url"],
             **totals,
             "timeline": data["timeline"],
+            "per_repo": data["per_repo"],
         })
     compute_global(users_list)
     users_list.sort(key=lambda u: u["global_score"], reverse=True)
@@ -353,17 +541,23 @@ def main() -> int:
         "config": {
             "org": cfg.get("org"),
             "repos": repos,
+            "wiki_repos": wiki_repos,
             "since": cfg.get("since"),
         },
         "metrics": METRICS,
-        "months": sorted(m for m in all_months if m and m != "0000-00"),
+        "weeks": sorted(w for w in all_weeks if w and w != "0000-00-00"),
+        "repos": sorted(all_repos),
         "users": users_list,
     }
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
-    print(f"[ok] wrote {OUTPUT_PATH} ({len(users_list)} users, {len(payload['months'])} months)", file=sys.stderr)
+    print(
+        f"[ok] wrote {OUTPUT_PATH} ({len(users_list)} users, "
+        f"{len(payload['weeks'])} weeks, {len(payload['repos'])} repos)",
+        file=sys.stderr,
+    )
     return 0
 
 

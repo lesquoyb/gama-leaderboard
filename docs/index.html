@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -26,16 +26,30 @@
     </header>
 
     <section class="card filters-card">
+      <div class="presets" id="presets">
+        <button data-preset="1w">Last week</button>
+        <button data-preset="4w">Last 4 weeks</button>
+        <button data-preset="12w">Last 3 months</button>
+        <button data-preset="26w">Last 6 months</button>
+        <button data-preset="52w">Last year</button>
+        <button data-preset="all" class="active">All time</button>
+      </div>
+
       <div class="filters-row">
         <div class="filter-group">
-          <label for="fromMonth">From</label>
-          <input type="month" id="fromMonth" />
+          <label for="fromWeek">From week</label>
+          <input type="date" id="fromWeek" />
         </div>
         <div class="filter-group">
-          <label for="toMonth">To</label>
-          <input type="month" id="toMonth" />
+          <label for="toWeek">To week</label>
+          <input type="date" id="toWeek" />
         </div>
-        <button id="resetRange" type="button" class="ghost-btn">Reset range</button>
+        <div class="filter-group grow">
+          <label for="repoFilter">Repository</label>
+          <select id="repoFilter">
+            <option value="">All repositories</option>
+          </select>
+        </div>
       </div>
 
       <div class="chips" id="tabs">
@@ -84,7 +98,7 @@
     <section class="card board-card">
       <div class="card-head">
         <h2>Full ranking</h2>
-        <span class="card-sub" id="boardSub"></span>
+        <span class="card-sub" id="boardSub">click a row for details</span>
       </div>
       <div class="board-wrap">
         <table id="board">
@@ -104,6 +118,15 @@
     <footer>
       <p>Data from <code>data.json</code> · built via GitHub Actions</p>
     </footer>
+  </div>
+
+  <!-- Profile modal -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <div id="modal-body"></div>
+    </div>
   </div>
 
   <script src="app.js"></script>

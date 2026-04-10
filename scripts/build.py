@@ -27,7 +27,7 @@ from urllib.error import HTTPError, URLError
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config.json"
-OUTPUT_PATH = ROOT / "site" / "data.json"
+OUTPUT_PATH = ROOT / "docs" / "data.json"
 
 API = "https://api.github.com"
 TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()

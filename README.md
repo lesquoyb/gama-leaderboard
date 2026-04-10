@@ -34,6 +34,7 @@ Because wiki commits carry only git author name/email (no GitHub login), use `au
 ### Correctness notes (bug-fixes vs. v1)
 
 - **Merge commits are skipped** (`parents.length > 1`). Previously, merge commits were counted and their symmetric branch diff inflated `java_lines` / `gaml_lines` by a huge factor.
+- **Commits authored before the repo was created are dropped.** A repo that is split off an existing project (e.g. `gama-platform/gama.experimental`) is not marked as a `fork` by the API, but `/commits` still returns the full imported history — which would otherwise credit every past author on the new repo. The builder caps each repo's `since` at its own `created_at` and also filters commits whose author date predates it.
 - **Author resolution never silently falls back to the git name**. Before, a commit with no linked GitHub account was attributed to the raw git name, splitting a single contributor into two identities (`"John Doe"` and `"johndoe"`). The new logic uses: `GitHub login > author_map[email] > author_map[name] > email > name`.
 - Line counts are `additions + deletions` on the target extension (i.e. "lines touched"), exactly what the UI displays.
 

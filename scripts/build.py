@@ -35,7 +35,7 @@ import subprocess
 import sys
 import tempfile
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import urlencode
@@ -171,6 +171,35 @@ def resolve_since(repo: str, raw: str | None) -> str | None:
     return raw
 
 
+# Cache for repo metadata (/repos/{repo}).
+_REPO_META_CACHE: dict[str, dict] = {}
+
+
+def repo_meta(repo: str) -> dict:
+    if repo in _REPO_META_CACHE:
+        return _REPO_META_CACHE[repo]
+    data, _ = gh_request(f"{API}/repos/{repo}")
+    _REPO_META_CACHE[repo] = data or {}
+    return _REPO_META_CACHE[repo]
+
+
+def effective_since(repo: str, raw_since: str | None) -> str | None:
+    """Cap `raw_since` at the repo's own `created_at`.
+
+    BUG FIX #4: `gama.experimental` and similar repos are created by pushing
+    pre-existing history from another repo (so they are NOT marked `fork` on
+    the API, but /commits returns years of imported commits). Without this
+    cap, every historical author is credited on the new repo.
+    """
+    meta = repo_meta(repo)
+    created = meta.get("created_at")
+    if not created:
+        return raw_since
+    if not raw_since or created > raw_since:
+        return created
+    return raw_since
+
+
 # ---------------------------------------------------------------------------
 # Author / bucket helpers
 # ---------------------------------------------------------------------------
@@ -224,35 +253,44 @@ def classify(filename: str, cfg: dict) -> str | None:
     return None
 
 
-def week_of(iso: str) -> str:
-    """Return the Monday (YYYY-MM-DD) of the week containing the given ISO dt."""
+def day_of(iso: str) -> str:
+    """Return the calendar day (YYYY-MM-DD) of the given ISO datetime."""
     if not iso:
         return "0000-00-00"
     s = iso.replace("Z", "+00:00")
     try:
-        d = datetime.fromisoformat(s).date()
+        return datetime.fromisoformat(s).date().isoformat()
     except ValueError:
-        try:
-            d = datetime.fromisoformat(s[:10]).date()
-        except ValueError:
-            return "0000-00-00"
-    monday = d - timedelta(days=d.weekday())
-    return monday.isoformat()
+        return iso[:10] if len(iso) >= 10 else "0000-00-00"
+
+
+# Cache for repository languages (GitHub /languages endpoint).
+_LANG_CACHE: dict[str, set[str]] = {}
+
+
+def repo_languages(repo: str) -> set[str]:
+    """Return the set of languages GitHub detects in the repo. Cached."""
+    if repo in _LANG_CACHE:
+        return _LANG_CACHE[repo]
+    data, _ = gh_request(f"{API}/repos/{repo}/languages")
+    langs = set((data or {}).keys())
+    _LANG_CACHE[repo] = langs
+    return langs
 
 
 def new_user() -> dict:
     return {
         "avatar_url": "",
         "html_url": "",
-        "timeline": {},   # week (YYYY-MM-DD) -> { metric: int }
+        "timeline": {},   # day (YYYY-MM-DD) -> { metric: int }
         "per_repo": {},   # repo (owner/name) -> { metric: int }
     }
 
 
-def bump(user: dict, week: str, repo: str, metric: str, amount: int = 1) -> None:
+def bump(user: dict, day: str, repo: str, metric: str, amount: int = 1) -> None:
     if amount == 0:
         return
-    tl = user["timeline"].setdefault(week, {m: 0 for m in METRICS})
+    tl = user["timeline"].setdefault(day, {m: 0 for m in METRICS})
     tl[metric] += amount
     pr = user["per_repo"].setdefault(repo, {m: 0 for m in METRICS})
     pr[metric] += amount
@@ -269,10 +307,30 @@ def process_commits(
     params: dict = {}
     if since:
         params["since"] = since
-    print(f"[info] {repo}: commits since {params.get('since', 'ALL')}", file=sys.stderr)
+
+    # BUG FIX #3: safeguard against java_lines leaking into repos that contain
+    # no Java code at all. We ask GitHub /repos/{repo}/languages once and only
+    # accept a java bucket if Java is actually detected in the repo.
+    langs = repo_languages(repo)
+    has_java = "Java" in langs
+    repo_created = repo_meta(repo).get("created_at") or ""
+    print(
+        f"[info] {repo}: commits since {params.get('since', 'ALL')}"
+        f" (languages: {', '.join(sorted(langs)) or 'none'},"
+        f" created {repo_created or '?'})",
+        file=sys.stderr,
+    )
     max_commits = cfg.get("max_commits_per_repo", 2000)
 
-    stats = {"fetched": 0, "merges_skipped": 0, "no_author": 0, "java": 0, "gaml": 0}
+    stats = {
+        "fetched": 0,
+        "merges_skipped": 0,
+        "no_author": 0,
+        "java": 0,
+        "gaml": 0,
+        "java_rejected": 0,
+        "pre_repo_skipped": 0,
+    }
 
     for commit in gh_paginate(f"{API}/repos/{repo}/commits", params):
         if stats["fetched"] >= max_commits:
@@ -286,8 +344,17 @@ def process_commits(
             stats["merges_skipped"] += 1
             continue
 
-        api_author = commit.get("author") or {}
+        # BUG FIX #4: drop commits authored before the repo itself existed.
+        # Such commits were imported from another repository's history (typical
+        # when a repo is split off, e.g. gama.experimental) and must not be
+        # credited to this repo.
         git_author = (commit.get("commit") or {}).get("author") or {}
+        commit_date = git_author.get("date", "") or ""
+        if repo_created and commit_date and commit_date < repo_created:
+            stats["pre_repo_skipped"] += 1
+            continue
+
+        api_author = commit.get("author") or {}
         login = api_author.get("login")
         email = git_author.get("email") or ""
         name = git_author.get("name") or ""
@@ -304,20 +371,31 @@ def process_commits(
             u["avatar_url"] = api_author["avatar_url"]
             u["html_url"] = api_author.get("html_url", "")
 
-        date = git_author.get("date", "")
-        week = week_of(date)
-        bump(u, week, repo, "commits", 1)
+        day = day_of(commit_date)
+        bump(u, day, repo, "commits", 1)
 
         sha = commit["sha"]
         detail, _ = gh_request(f"{API}/repos/{repo}/commits/{sha}")
         if not detail:
             continue
         for f in detail.get("files", []) or []:
-            bucket = classify(f.get("filename", ""), cfg)
+            filename = f.get("filename", "")
+            bucket = classify(filename, cfg)
             if not bucket:
                 continue
+            if bucket == "java_lines" and not has_java:
+                # Should not happen: the file ends in .java but /languages
+                # does not list Java for this repo. Log once for diagnosis.
+                if stats["java_rejected"] < 3:
+                    print(
+                        f"[warn] {repo}: rejecting java classification for {filename}"
+                        f" (repo languages: {sorted(langs)})",
+                        file=sys.stderr,
+                    )
+                stats["java_rejected"] += 1
+                continue
             changes = int(f.get("additions", 0)) + int(f.get("deletions", 0))
-            bump(u, week, repo, bucket, changes)
+            bump(u, day, repo, bucket, changes)
             if bucket == "java_lines":
                 stats["java"] += changes
             elif bucket == "gaml_lines":
@@ -326,7 +404,9 @@ def process_commits(
     print(
         f"[stats] {repo}: {stats['fetched']} commits "
         f"({stats['merges_skipped']} merges skipped, "
-        f"{stats['no_author']} unattributed), "
+        f"{stats['pre_repo_skipped']} pre-creation skipped, "
+        f"{stats['no_author']} unattributed, "
+        f"{stats['java_rejected']} java-rejected), "
         f"java={stats['java']} gaml={stats['gaml']}",
         file=sys.stderr,
     )
@@ -355,9 +435,9 @@ def process_issues(
         if not u["avatar_url"] and api_user.get("avatar_url"):
             u["avatar_url"] = api_user["avatar_url"]
             u["html_url"] = api_user.get("html_url", "")
-        bump(u, week_of(created), repo, "issues_opened", 1)
+        bump(u, day_of(created), repo, "issues_opened", 1)
         if issue.get("state") == "closed" and issue.get("closed_at"):
-            bump(u, week_of(issue["closed_at"]), repo, "issues_closed", 1)
+            bump(u, day_of(issue["closed_at"]), repo, "issues_closed", 1)
 
 
 def process_prs(
@@ -378,10 +458,10 @@ def process_prs(
         if not u["avatar_url"] and api_user.get("avatar_url"):
             u["avatar_url"] = api_user["avatar_url"]
             u["html_url"] = api_user.get("html_url", "")
-        bump(u, week_of(created), repo, "prs_opened", 1)
+        bump(u, day_of(created), repo, "prs_opened", 1)
         merged_at = pr.get("merged_at")
         if merged_at:
-            bump(u, week_of(merged_at), repo, "prs_merged", 1)
+            bump(u, day_of(merged_at), repo, "prs_merged", 1)
 
 
 # ---------------------------------------------------------------------------
@@ -428,7 +508,7 @@ def process_wiki_clone(
             return
 
         current_user = None
-        current_week = None
+        current_day = None
         commits = 0
         lines = 0
         for line in result.stdout.splitlines():
@@ -446,8 +526,8 @@ def process_wiki_clone(
                     current_user = None
                     continue
                 current_user = users.setdefault(canonical, new_user())
-                current_week = week_of(date)
-                bump(current_user, current_week, wiki_label, "commits", 1)
+                current_day = day_of(date)
+                bump(current_user, current_day, wiki_label, "commits", 1)
                 commits += 1
             else:
                 if not current_user:
@@ -462,7 +542,7 @@ def process_wiki_clone(
                     total = int(adds) + int(dels)
                 except ValueError:
                     continue
-                bump(current_user, current_week, wiki_label, "wiki_lines", total)
+                bump(current_user, current_day, wiki_label, "wiki_lines", total)
                 lines += total
         print(f"[stats] {wiki_label}: {commits} commits, {lines} wiki lines", file=sys.stderr)
 
@@ -473,9 +553,9 @@ def process_wiki_clone(
 
 def totals_from_timeline(timeline: dict) -> dict:
     out = {m: 0 for m in METRICS}
-    for week_data in timeline.values():
+    for day_data in timeline.values():
         for m in METRICS:
-            out[m] += week_data.get(m, 0)
+            out[m] += day_data.get(m, 0)
     return out
 
 
@@ -503,7 +583,7 @@ def main() -> int:
     for repo in repos:
         try:
             raw_since = since_for(repo, cfg)
-            since = resolve_since(repo, raw_since)
+            since = effective_since(repo, resolve_since(repo, raw_since))
             process_commits(repo, cfg, users, since)
             process_issues(repo, cfg, users, since)
             process_prs(repo, cfg, users, since)
@@ -513,17 +593,20 @@ def main() -> int:
     for base_repo in wiki_repos:
         try:
             since = resolve_since(base_repo, since_for(base_repo, cfg))
+            # Wikis live in a separate `.wiki` repo, but we reuse the base
+            # repo's creation date as a lower bound.
+            since = effective_since(base_repo, since)
             process_wiki_clone(base_repo, cfg, users, since)
         except Exception as e:  # noqa: BLE001
             print(f"[error] wiki {base_repo}: {e}", file=sys.stderr)
 
     # Build user records with totals.
     users_list: list[dict] = []
-    all_weeks: set[str] = set()
+    all_days: set[str] = set()
     all_repos: set[str] = set()
     for login, data in users.items():
         totals = totals_from_timeline(data["timeline"])
-        all_weeks.update(data["timeline"].keys())
+        all_days.update(data["timeline"].keys())
         all_repos.update(data["per_repo"].keys())
         users_list.append({
             "login": login,
@@ -545,7 +628,7 @@ def main() -> int:
             "since": cfg.get("since"),
         },
         "metrics": METRICS,
-        "weeks": sorted(w for w in all_weeks if w and w != "0000-00-00"),
+        "days": sorted(d for d in all_days if d and d != "0000-00-00"),
         "repos": sorted(all_repos),
         "users": users_list,
     }
@@ -555,7 +638,7 @@ def main() -> int:
         json.dump(payload, f, indent=2, ensure_ascii=False)
     print(
         f"[ok] wrote {OUTPUT_PATH} ({len(users_list)} users, "
-        f"{len(payload['weeks'])} weeks, {len(payload['repos'])} repos)",
+        f"{len(payload['days'])} days, {len(payload['repos'])} repos)",
         file=sys.stderr,
     )
     return 0

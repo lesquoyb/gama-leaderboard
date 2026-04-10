@@ -27,22 +27,22 @@
 
     <section class="card filters-card">
       <div class="presets" id="presets">
-        <button data-preset="1w">Last week</button>
-        <button data-preset="4w">Last 4 weeks</button>
-        <button data-preset="12w">Last 3 months</button>
-        <button data-preset="26w">Last 6 months</button>
-        <button data-preset="52w">Last year</button>
+        <button data-preset="7">Last 7 days</button>
+        <button data-preset="30">Last 30 days</button>
+        <button data-preset="90">Last 90 days</button>
+        <button data-preset="180">Last 180 days</button>
+        <button data-preset="365">Last year</button>
         <button data-preset="all" class="active">All time</button>
       </div>
 
       <div class="filters-row">
         <div class="filter-group">
-          <label for="fromWeek">From week</label>
-          <input type="date" id="fromWeek" />
+          <label for="fromDate">From</label>
+          <input type="date" id="fromDate" />
         </div>
         <div class="filter-group">
-          <label for="toWeek">To week</label>
-          <input type="date" id="toWeek" />
+          <label for="toDate">To</label>
+          <input type="date" id="toDate" />
         </div>
         <div class="filter-group grow">
           <label for="repoFilter">Repository</label>

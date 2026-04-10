@@ -21,8 +21,8 @@ const METRICS = [
   "prs_merged",
 ];
 
-const MIN_WEEK = "0000-00-00";
-const MAX_WEEK = "9999-99-99";
+const MIN_DAY = "0000-00-00";
+const MAX_DAY = "9999-99-99";
 
 let DATA = null;
 let currentMetric = "global_score";
@@ -49,42 +49,31 @@ async function load() {
   render();
 }
 
-// ---------- week helpers ----------
+// ---------- day helpers ----------
 
-function mondayOf(dateStr) {
-  if (!dateStr) return null;
+function addDays(dateStr, n) {
   const d = new Date(dateStr + "T00:00:00Z");
-  if (isNaN(d)) return null;
-  const dow = d.getUTCDay() || 7; // Sun=0 -> 7
-  d.setUTCDate(d.getUTCDate() - (dow - 1));
-  return d.toISOString().slice(0, 10);
-}
-
-function addWeeks(dateStr, n) {
-  const d = new Date(dateStr + "T00:00:00Z");
-  d.setUTCDate(d.getUTCDate() + n * 7);
+  d.setUTCDate(d.getUTCDate() + n);
   return d.toISOString().slice(0, 10);
 }
 
 // ---------- filters ----------
 
 function initFilters() {
-  const weeks = DATA.weeks || [];
-  const from = document.getElementById("fromWeek");
-  const to = document.getElementById("toWeek");
-  if (weeks.length) {
-    from.min = to.min = weeks[0];
-    from.max = to.max = weeks[weeks.length - 1];
-    from.value = weeks[0];
-    to.value = weeks[weeks.length - 1];
+  const days = DATA.days || [];
+  const from = document.getElementById("fromDate");
+  const to = document.getElementById("toDate");
+  if (days.length) {
+    from.min = to.min = days[0];
+    from.max = to.max = days[days.length - 1];
+    from.value = days[0];
+    to.value = days[days.length - 1];
   }
   from.addEventListener("change", () => {
-    from.value = mondayOf(from.value) || from.value;
     clearPreset();
     render();
   });
   to.addEventListener("change", () => {
-    to.value = mondayOf(to.value) || to.value;
     clearPreset();
     render();
   });
@@ -109,18 +98,18 @@ function initRepoFilter() {
 }
 
 function applyPreset(preset, btn) {
-  const weeks = DATA.weeks || [];
-  if (!weeks.length) return;
-  const last = weeks[weeks.length - 1];
-  const first = weeks[0];
+  const days = DATA.days || [];
+  if (!days.length) return;
+  const last = days[days.length - 1];
+  const first = days[0];
   let from = first;
   if (preset !== "all") {
     const n = parseInt(preset, 10);
-    from = addWeeks(last, -(n - 1));
+    from = addDays(last, -(n - 1));
     if (from < first) from = first;
   }
-  document.getElementById("fromWeek").value = from;
-  document.getElementById("toWeek").value = last;
+  document.getElementById("fromDate").value = from;
+  document.getElementById("toDate").value = last;
   document.querySelectorAll("#presets button").forEach((b) => b.classList.remove("active"));
   if (btn) btn.classList.add("active");
   render();
@@ -132,8 +121,8 @@ function clearPreset() {
 
 function selectedRange() {
   return {
-    from: document.getElementById("fromWeek").value || MIN_WEEK,
-    to: document.getElementById("toWeek").value || MAX_WEEK,
+    from: document.getElementById("fromDate").value || MIN_DAY,
+    to: document.getElementById("toDate").value || MAX_DAY,
   };
 }
 
@@ -142,14 +131,14 @@ function selectedRange() {
 function aggregate(user, from, to, repo) {
   const totals = Object.fromEntries(METRICS.map((m) => [m, 0]));
   if (repo) {
-    // Per-repo totals are all-time (we don't store per-repo per-week).
+    // Per-repo totals are all-time (we don't store per-repo per-day).
     const pr = (user.per_repo || {})[repo];
     if (pr) for (const m of METRICS) totals[m] = pr[m] || 0;
     return totals;
   }
   const tl = user.timeline || {};
-  for (const [week, vals] of Object.entries(tl)) {
-    if (week < from || week > to) continue;
+  for (const [day, vals] of Object.entries(tl)) {
+    if (day < from || day > to) continue;
     for (const m of METRICS) totals[m] += vals[m] || 0;
   }
   return totals;
@@ -288,20 +277,20 @@ function render() {
 
 // ---------- main chart ----------
 
-function weeksInRange() {
+function daysInRange() {
   const { from, to } = selectedRange();
-  return (DATA.weeks || []).filter((w) => w >= from && w <= to);
+  return (DATA.days || []).filter((d) => d >= from && d <= to);
 }
 
-function cumulativeSeries(user, metric, weeks) {
+function cumulativeSeries(user, metric, days) {
   const tl = user.timeline || {};
   let acc = 0;
-  return weeks.map((w) => {
+  return days.map((d) => {
     if (metric === "global_score") {
-      const vals = tl[w] || {};
+      const vals = tl[d] || {};
       acc += METRICS.reduce((s, k) => s + (vals[k] || 0), 0);
     } else {
-      acc += (tl[w] || {})[metric] || 0;
+      acc += (tl[d] || {})[metric] || 0;
     }
     return acc;
   });
@@ -315,28 +304,17 @@ const CHART_COLORS = [
   { border: "#fbbf24", bg: "rgba(251, 191, 36, 0.12)" },
 ];
 
-function sparseTicks(weeks) {
-  const max = 12;
-  if (weeks.length <= max) return {};
-  const every = Math.ceil(weeks.length / max);
-  return {
-    callback: function (_val, idx) {
-      return idx % every === 0 ? weeks[idx] : "";
-    },
-  };
-}
-
 function renderChart(topUsers) {
-  const weeks = weeksInRange();
+  const days = daysInRange();
   const datasets = topUsers.map((u, i) => {
     const c = CHART_COLORS[i % CHART_COLORS.length];
     return {
       label: u.login,
-      data: cumulativeSeries(u, currentMetric, weeks),
+      data: cumulativeSeries(u, currentMetric, days),
       borderColor: c.border,
       backgroundColor: c.bg,
       fill: true,
-      tension: 0.35,
+      tension: 0.25,
       pointRadius: 0,
       pointHoverRadius: 5,
       borderWidth: 2.5,
@@ -344,7 +322,7 @@ function renderChart(topUsers) {
   });
   const cfg = {
     type: "line",
-    data: { labels: weeks, datasets },
+    data: { labels: days, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -375,9 +353,9 @@ function renderChart(topUsers) {
           ticks: {
             color: "#8a93ab",
             maxRotation: 0,
-            autoSkip: false,
+            autoSkip: true,
+            maxTicksLimit: 10,
             font: { family: "Inter" },
-            ...sparseTicks(weeks),
           },
           grid: { color: "rgba(255,255,255,0.04)" },
         },
@@ -482,23 +460,23 @@ function renderPerRepoTable(user) {
 }
 
 function renderUserChart(user) {
-  const weeks = weeksInRange();
+  const days = daysInRange();
   const datasets = METRICS.slice(0, 4).map((m, i) => {
     const c = CHART_COLORS[i % CHART_COLORS.length];
     return {
       label: LABELS[m],
-      data: cumulativeSeries(user, m, weeks),
+      data: cumulativeSeries(user, m, days),
       borderColor: c.border,
       backgroundColor: c.bg,
       fill: true,
-      tension: 0.35,
+      tension: 0.25,
       pointRadius: 0,
       borderWidth: 2,
     };
   });
   const cfg = {
     type: "line",
-    data: { labels: weeks, datasets },
+    data: { labels: days, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -511,7 +489,12 @@ function renderUserChart(user) {
       },
       scales: {
         x: {
-          ticks: { color: "#8a93ab", font: { family: "Inter" }, autoSkip: false, ...sparseTicks(weeks) },
+          ticks: {
+            color: "#8a93ab",
+            font: { family: "Inter" },
+            autoSkip: true,
+            maxTicksLimit: 8,
+          },
           grid: { color: "rgba(255,255,255,0.04)" },
         },
         y: {

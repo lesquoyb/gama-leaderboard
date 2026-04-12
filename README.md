@@ -11,12 +11,44 @@ Static site that ranks GitHub contributors across one or more repositories (or a
 | `commits` | Number of non-merge commits authored |
 | `java_lines` | Lines changed (additions + deletions) on `.java` files |
 | `gaml_lines` | Lines changed on `.gaml` / `.experiment` files |
+| `other_lines` | Lines changed on all other text files (see below for exclusions) |
 | `wiki_lines` | Lines changed on wikis (see below) |
 | `issues_opened` | Issues opened by the user |
 | `issues_closed` | Issues opened by the user that are now closed |
 | `prs_opened` | Pull requests opened by the user |
 | `prs_merged` | Pull requests authored by the user that were merged |
 | `global_score` | Normalized mean of all metrics (0–1), recomputed client-side whenever the range / repo filter changes |
+
+### What counts as "other lines"
+
+`other_lines` aggregates lines touched (additions + deletions) on every file that is **not** a Java or GAML file and **not** a binary/non-text artifact. The following file types are excluded:
+
+| Category | Extensions |
+|---|---|
+| Compiled / packaged Java | `.jar` `.class` `.war` `.ear` |
+| Compiled objects / libs | `.exe` `.dll` `.so` `.dylib` `.o` `.a` `.lib` |
+| Python bytecode | `.pyc` `.pyo` `.pyd` |
+| Archives | `.zip` `.tar` `.gz` `.bz2` `.7z` `.rar` `.xz` |
+| Images | `.png` `.jpg` `.jpeg` `.gif` `.ico` `.bmp` `.webp` `.tiff` |
+| Audio / video | `.mp3` `.mp4` `.avi` `.mov` `.wav` `.ogg` `.flac` |
+| Fonts | `.ttf` `.otf` `.woff` `.woff2` `.eot` |
+| Documents | `.pdf` |
+
+Wiki contributions are also excluded — they are counted separately under `wiki_lines`.
+
+Typical files that **do** count: `.py`, `.xml`, `.json`, `.md`, `.yml`, `.R`, `.sh`, `.cpp`, `.ts`, `.html`, etc.
+
+For each contributor, the UI shows their **dominant extension** (the file type to which they contributed the most lines) as a badge next to their name when the *Other lines* metric is selected.
+
+### How the global score is calculated
+
+`global_score` is a number between 0 and 1 computed client-side from the **currently visible data** (respecting the date range and repo filter):
+
+1. For each metric `m`, find the maximum value across all contributors: `max_m`.
+2. For each contributor, compute their normalized value on each metric: `score_m = value_m / max_m` (0 if `max_m = 0`).
+3. The global score is the **mean of all normalized scores**: `global_score = (Σ score_m) / n_metrics`.
+
+All 9 metrics (`commits`, `java_lines`, `gaml_lines`, `other_lines`, `wiki_lines`, `issues_opened`, `issues_closed`, `prs_opened`, `prs_merged`) have equal weight. A score of 1.0 means the contributor leads on every single metric within the selected scope.
 
 Every metric is bucketed two ways in the output `data.json`:
 

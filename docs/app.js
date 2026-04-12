@@ -3,6 +3,7 @@ const LABELS = {
   commits: "Commits",
   java_lines: "Java lines",
   gaml_lines: "GAML lines",
+  other_lines: "Other lines",
   wiki_lines: "Wiki lines",
   issues_opened: "Issues opened",
   issues_closed: "Issues closed",
@@ -14,6 +15,7 @@ const METRICS = [
   "commits",
   "java_lines",
   "gaml_lines",
+  "other_lines",
   "wiki_lines",
   "issues_opened",
   "issues_closed",
@@ -150,6 +152,7 @@ function computedUsers() {
     login: u.login,
     avatar_url: u.avatar_url,
     html_url: u.html_url,
+    other_top_ext: u.other_top_ext || "",
     timeline: u.timeline || {},
     per_repo: u.per_repo || {},
     ...aggregate(u, from, to, currentRepo),
@@ -216,6 +219,9 @@ function renderPodium(rows) {
     .map((u, i) => {
       const medal = ["🥇 1st", "🥈 2nd", "🥉 3rd"][i];
       const v = formatValue(currentMetric, u[currentMetric]) + valueSuffix(currentMetric);
+      const extBadge = (currentMetric === "other_lines" && u.other_top_ext)
+        ? `<span class="podium-ext">${escapeHtml(u.other_top_ext)}</span>`
+        : "";
       return `
         <div class="podium-card p${i + 1}" data-login="${escapeAttr(u.login)}">
           <div class="podium-medal">${medal}</div>
@@ -223,6 +229,7 @@ function renderPodium(rows) {
           <div class="podium-name">@${escapeHtml(u.login)}</div>
           <div class="podium-value">${v}</div>
           <span class="podium-metric">${LABELS[currentMetric]}</span>
+          ${extBadge}
         </div>`;
     })
     .join("");
@@ -249,11 +256,14 @@ function render() {
     const raw = u[currentMetric] || 0;
     const value = formatValue(currentMetric, raw) + valueSuffix(currentMetric);
     const barPct = max > 0 ? (raw / max) * 100 : 0;
+    const extBadge = (currentMetric === "other_lines" && u.other_top_ext)
+      ? ` <span class="ext-badge">${escapeHtml(u.other_top_ext)}</span>`
+      : "";
     tr.innerHTML = `
       <td class="rank">#${i + 1}</td>
       <td class="user">
         ${u.avatar_url ? `<img src="${u.avatar_url}" alt="" />` : ""}
-        <span class="user-login">@${escapeHtml(u.login)}</span>
+        <span class="user-login">@${escapeHtml(u.login)}${extBadge}</span>
       </td>
       <td class="col-bar">
         <div class="bar-track"><div class="bar-fill" style="width:${barPct}%"></div></div>
@@ -399,6 +409,7 @@ function openProfile(login) {
           <span class="metric-label">${LABELS[m]}</span>
           <span class="metric-value">${(filtered[m] || 0).toLocaleString()}</span>
           <span class="metric-total">${(allTime[m] || 0).toLocaleString()} all-time</span>
+          ${m === "other_lines" && user.other_top_ext ? `<span class="metric-ext">top: ${escapeHtml(user.other_top_ext)}</span>` : ""}
         </div>
       `).join("")}
     </div>
@@ -437,6 +448,7 @@ function renderPerRepoTable(user) {
           <th>Commits</th>
           <th>Java</th>
           <th>GAML</th>
+          <th>Other</th>
           <th>Wiki</th>
           <th>Issues</th>
           <th>PRs</th>
@@ -449,6 +461,7 @@ function renderPerRepoTable(user) {
             <td>${(e.commits || 0).toLocaleString()}</td>
             <td>${(e.java_lines || 0).toLocaleString()}</td>
             <td>${(e.gaml_lines || 0).toLocaleString()}</td>
+            <td>${(e.other_lines || 0).toLocaleString()}</td>
             <td>${(e.wiki_lines || 0).toLocaleString()}</td>
             <td>${((e.issues_opened || 0) + (e.issues_closed || 0)).toLocaleString()}</td>
             <td>${((e.prs_opened || 0) + (e.prs_merged || 0)).toLocaleString()}</td>

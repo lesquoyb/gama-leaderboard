@@ -54,12 +54,34 @@ METRICS = [
     "commits",
     "java_lines",
     "gaml_lines",
+    "other_lines",
     "wiki_lines",
     "issues_opened",
     "issues_closed",
     "prs_opened",
     "prs_merged",
 ]
+
+# Extensions that are binary/non-text and must be excluded from other_lines.
+# (Java and GAML files are handled by classify(); wiki is a separate pipeline.)
+BINARY_EXTENSIONS = {
+    # compiled / packaged Java
+    ".jar", ".class", ".war", ".ear",
+    # other compiled objects / shared libs
+    ".exe", ".dll", ".so", ".dylib", ".o", ".a", ".lib",
+    # Python bytecode
+    ".pyc", ".pyo", ".pyd",
+    # archives
+    ".zip", ".tar", ".gz", ".bz2", ".7z", ".rar", ".xz",
+    # images
+    ".png", ".jpg", ".jpeg", ".gif", ".ico", ".bmp", ".webp", ".tiff",
+    # audio / video
+    ".mp3", ".mp4", ".avi", ".mov", ".wav", ".ogg", ".flac",
+    # fonts
+    ".ttf", ".otf", ".woff", ".woff2", ".eot",
+    # documents
+    ".pdf",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -247,10 +269,13 @@ def classify(filename: str, cfg: dict) -> str | None:
     for ext in m.get("java_extensions", [".java"]):
         if filename.endswith(ext):
             return "java_lines"
-    for ext in m.get("gaml_extensions", [".gaml"]):
+    for ext in m.get("gaml_extensions", [".gaml", ".experiment"]):
         if filename.endswith(ext):
             return "gaml_lines"
-    return None
+    suffix = Path(filename).suffix.lower()
+    if suffix in BINARY_EXTENSIONS:
+        return None
+    return "other_lines"
 
 
 def day_of(iso: str) -> str:
@@ -282,8 +307,9 @@ def new_user() -> dict:
     return {
         "avatar_url": "",
         "html_url": "",
-        "timeline": {},   # day (YYYY-MM-DD) -> { metric: int }
-        "per_repo": {},   # repo (owner/name) -> { metric: int }
+        "timeline": {},          # day (YYYY-MM-DD) -> { metric: int }
+        "per_repo": {},          # repo (owner/name) -> { metric: int }
+        "other_ext_counts": {},  # suffix -> total lines (all-time, for dominant ext)
     }
 
 
@@ -400,6 +426,10 @@ def process_commits(
                 stats["java"] += changes
             elif bucket == "gaml_lines":
                 stats["gaml"] += changes
+            elif bucket == "other_lines" and changes > 0:
+                suffix = Path(filename).suffix.lower() or "(no ext)"
+                ec = u["other_ext_counts"]
+                ec[suffix] = ec.get(suffix, 0) + changes
 
     print(
         f"[stats] {repo}: {stats['fetched']} commits "
@@ -551,6 +581,13 @@ def process_wiki_clone(
 # Finalization
 # ---------------------------------------------------------------------------
 
+def _top_ext(counts: dict) -> str:
+    """Return the extension with the most lines, or '' if no data."""
+    if not counts:
+        return ""
+    return max(counts, key=lambda k: counts[k])
+
+
 def totals_from_timeline(timeline: dict) -> dict:
     out = {m: 0 for m in METRICS}
     for day_data in timeline.values():
@@ -613,6 +650,7 @@ def main() -> int:
             "avatar_url": data["avatar_url"],
             "html_url": data["html_url"],
             **totals,
+            "other_top_ext": _top_ext(data["other_ext_counts"]),
             "timeline": data["timeline"],
             "per_repo": data["per_repo"],
         })

@@ -374,6 +374,30 @@ html, body {
   color: var(--muted);
   margin-top: 0.2rem;
 }
+.podium-ext {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent-2);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 6px;
+  padding: 0.1rem 0.45rem;
+}
+.ext-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.65rem;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--accent-2);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 5px;
+  padding: 0.05rem 0.35rem;
+  vertical-align: middle;
+}
 
 /* ---------- chart ---------- */
 .chart-card .chart-wrap {
@@ -609,6 +633,12 @@ footer code {
   font-size: 0.7rem;
   color: var(--muted-2);
   font-variant-numeric: tabular-nums;
+}
+.metric-ext {
+  font-size: 0.65rem;
+  color: var(--accent-2);
+  font-family: "JetBrains Mono", monospace;
+  opacity: 0.85;
 }
 
 .repo-table-wrap { overflow-x: auto; }

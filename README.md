@@ -1,5 +1,7 @@
 # GitHub Leaderboard
 
+**https://lesquoyb.github.io/gama-leaderboard/**
+
 Static site that ranks GitHub contributors across one or more repositories (or a whole organization) from a given start date. Data is fetched from the public GitHub REST API by a Python script, wiki contributions are collected by cloning wiki repositories locally, and the result is published as a static site on GitHub Pages.
 
 ## Metrics

@@ -615,10 +615,12 @@ def compute_global(users_list: list[dict]) -> None:
         )
         n = len(active)
         for i, u in enumerate(active):
-            u[f"_rs_{m}"] = (n - 1 - i) / (n - 1) if n > 1 else 1.0
+            u["_rank_scores"] = u.get("_rank_scores", {})
+            u["_rank_scores"][m] = (n - 1 - i) / (n - 1) if n > 1 else 1.0
 
     for u in users_list:
-        parts = [u.pop(f"_rs_{m}", 0.0) for m in METRICS]
+        s = u.pop("_rank_scores", {})
+        parts = [s.get(m, 0.0) for m in METRICS]
         u["global_score"] = round(sum(parts) / len(parts), 4)
 
 

@@ -157,24 +157,32 @@ function computedUsers() {
     per_repo: u.per_repo || {},
     ...aggregate(u, from, to, currentRepo),
   }));
-  // Rank-based global score: for each metric, sort active contributors and
-  // assign a linear score in [0, 1] — #1 gets 1.0, last gets 0.
-  // This is robust to power-law distributions (10× more commits than #2 gives
-  // the same bonus as being 1 step ahead) and to outliers entering a wider
-  // time window (dropping from #1 to #2 is a small, bounded score change).
+  // Rank-based global score.
+  // Each metric contributes equally: 100 / n_metrics points max.
+  // Within a metric, #1 gets the full 100%, last active contributor gets 0%,
+  // intermediate ranks are interpolated linearly.
+  // Inactive contributors (value = 0) score 0 on that metric.
+  //
+  // score_m(rank k, N active) = (N - k) / (N - 1)   [k is 1-indexed]
+  // global_score = mean of score_m over all metrics
+  const nMetrics = METRICS.length;
+  // Build a login→{metric→rankScore} map to avoid mutating row objects.
+  const rankScores = {};
+  for (const r of rows) rankScores[r.login] = {};
+
   for (const m of METRICS) {
     const active = rows
       .filter((r) => (r[m] || 0) > 0)
       .sort((a, b) => b[m] - a[m]);
     const n = active.length;
     active.forEach((r, i) => {
-      r[`_rs_${m}`] = n > 1 ? (n - 1 - i) / (n - 1) : 1;
+      rankScores[r.login][m] = n > 1 ? (n - 1 - i) / (n - 1) : 1;
     });
   }
+
   for (const r of rows) {
-    const parts = METRICS.map((m) => r[`_rs_${m}`] || 0);
-    r.global_score = parts.reduce((a, b) => a + b, 0) / parts.length;
-    for (const m of METRICS) delete r[`_rs_${m}`];
+    const s = rankScores[r.login];
+    r.global_score = METRICS.reduce((acc, m) => acc + (s[m] || 0), 0) / nMetrics;
   }
   return rows;
 }

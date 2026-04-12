@@ -157,17 +157,24 @@ function computedUsers() {
     per_repo: u.per_repo || {},
     ...aggregate(u, from, to, currentRepo),
   }));
-  // Normalise by all-time maxes so the score is stable across time windows.
-  // Using period maxes caused counter-intuitive rank inversions: a contributor
-  // active only last week could rank *better* on "last month" than on "last week"
-  // because unrelated contributors entering the wider window inflated the maxes
-  // of metrics where the person had 0, collapsing their competitors' scores.
-  const allTimeMaxes = Object.fromEntries(
-    METRICS.map((m) => [m, Math.max(0, ...DATA.users.map((u) => u[m] || 0))])
-  );
+  // Rank-based global score: for each metric, sort active contributors and
+  // assign a linear score in [0, 1] — #1 gets 1.0, last gets 0.
+  // This is robust to power-law distributions (10× more commits than #2 gives
+  // the same bonus as being 1 step ahead) and to outliers entering a wider
+  // time window (dropping from #1 to #2 is a small, bounded score change).
+  for (const m of METRICS) {
+    const active = rows
+      .filter((r) => (r[m] || 0) > 0)
+      .sort((a, b) => b[m] - a[m]);
+    const n = active.length;
+    active.forEach((r, i) => {
+      r[`_rs_${m}`] = n > 1 ? (n - 1 - i) / (n - 1) : 1;
+    });
+  }
   for (const r of rows) {
-    const parts = METRICS.map((m) => (allTimeMaxes[m] > 0 ? r[m] / allTimeMaxes[m] : 0));
+    const parts = METRICS.map((m) => r[`_rs_${m}`] || 0);
     r.global_score = parts.reduce((a, b) => a + b, 0) / parts.length;
+    for (const m of METRICS) delete r[`_rs_${m}`];
   }
   return rows;
 }

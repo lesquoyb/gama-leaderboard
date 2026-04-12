@@ -42,16 +42,15 @@ For each contributor, the UI shows their **dominant extension** (the file type t
 
 ### How the global score is calculated
 
-`global_score` is a number between 0 and 1 computed client-side. It measures a contributor's activity in the selected period relative to the **all-time record holders** for each metric:
+`global_score` is a number between 0 and 1 computed client-side using a **rank-based** approach, which is robust to the power-law distributions typical of open-source contribution data (one contributor often has 10× more commits than #2, which should not translate to a 10× score advantage).
 
-1. For each metric `m`, find the all-time maximum value across all contributors: `max_m` (fixed, independent of the current date filter).
-2. For each contributor, sum the values in the selected date range for each metric.
-3. Compute their normalized value: `score_m = period_value_m / max_m` (0 if `max_m = 0`).
-4. The global score is the **mean of all normalized scores**: `global_score = (Σ score_m) / n_metrics`.
+For each metric `m` in the selected period:
 
-All 9 metrics (`commits`, `java_lines`, `gaml_lines`, `other_lines`, `wiki_lines`, `issues_opened`, `issues_closed`, `prs_opened`, `prs_merged`) have equal weight.
+1. Rank all contributors who have a non-zero value for `m`, best first.
+2. Assign a linear rank score: `rank_score_m = (N_m − rank) / (N_m − 1)`, where `N_m` is the number of active contributors on metric `m`. The leader gets 1.0, the last active contributor gets 0, contributors with 0 activity get 0.
+3. The global score is the **mean of all per-metric rank scores**: `global_score = (Σ rank_score_m) / n_metrics`.
 
-**Why all-time maxes?** Normalising by the *current window's* maxes caused counter-intuitive rank inversions: a contributor active only last week could rank *better* on "last month" than on "last week", because contributors entering the wider window inflated the maxima on metrics where their competitors had 0, collapsing those competitors' scores. With fixed all-time maxes the score is monotone — widening the time window can only help contributors who actually worked in the added period.
+All 9 metrics (`commits`, `java_lines`, `gaml_lines`, `other_lines`, `wiki_lines`, `issues_opened`, `issues_closed`, `prs_opened`, `prs_merged`) have equal weight. A score of 1.0 means the contributor leads every single metric in the selected scope.
 
 Every metric is bucketed two ways in the output `data.json`:
 

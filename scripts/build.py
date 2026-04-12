@@ -597,9 +597,28 @@ def totals_from_timeline(timeline: dict) -> dict:
 
 
 def compute_global(users_list: list[dict]) -> None:
-    maxes = {m: max((u[m] for u in users_list), default=0) for m in METRICS}
+    """Rank-based global score (all-time totals).
+
+    For each metric, contributors are sorted by their all-time total and
+    assigned a linear score in [0, 1]: #1 → 1.0, last active → 0.
+    The global score is the mean of per-metric rank scores.
+
+    Using ranks rather than normalised values makes the score robust to
+    power-law distributions (one mega-contributor no longer collapses
+    everyone else's score) while still rewarding leadership in each category.
+    """
+    for m in METRICS:
+        active = sorted(
+            [u for u in users_list if u.get(m, 0) > 0],
+            key=lambda u: u[m],
+            reverse=True,
+        )
+        n = len(active)
+        for i, u in enumerate(active):
+            u[f"_rs_{m}"] = (n - 1 - i) / (n - 1) if n > 1 else 1.0
+
     for u in users_list:
-        parts = [(u[m] / maxes[m]) if maxes[m] > 0 else 0.0 for m in METRICS]
+        parts = [u.pop(f"_rs_{m}", 0.0) for m in METRICS]
         u["global_score"] = round(sum(parts) / len(parts), 4)
 
 

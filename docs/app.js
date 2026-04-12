@@ -389,12 +389,30 @@ function renderChart(topUsers) {
 
 // ---------- profile modal ----------
 
+function computeRanks(login) {
+  const allRows = computedUsers();
+  const ranks = {};
+  for (const m of ["global_score", ...METRICS]) {
+    const sorted = allRows
+      .filter((u) => (u[m] || 0) > 0)
+      .sort((a, b) => (b[m] || 0) - (a[m] || 0));
+    const pos = sorted.findIndex((u) => u.login === login);
+    ranks[m] = pos >= 0 ? pos + 1 : null;
+  }
+  return ranks;
+}
+
 function openProfile(login) {
   const user = DATA.users.find((u) => u.login === login);
   if (!user) return;
   const { from, to } = selectedRange();
   const filtered = aggregate(user, from, to, "");
   const allTime = METRICS.reduce((acc, m) => ({ ...acc, [m]: user[m] || 0 }), {});
+  const ranks = computeRanks(login);
+
+  const globalRankHtml = ranks["global_score"]
+    ? `<span class="profile-global-rank">${ranks["global_score"] === 1 ? "🥇" : ranks["global_score"] === 2 ? "🥈" : ranks["global_score"] === 3 ? "🥉" : ""} #${ranks["global_score"]} overall</span>`
+    : "";
 
   const body = document.getElementById("modal-body");
   body.innerHTML = `
@@ -404,19 +422,27 @@ function openProfile(login) {
         <h2>@${escapeHtml(user.login)}</h2>
         <a href="${user.html_url || "https://github.com/" + encodeURIComponent(user.login)}"
            target="_blank" rel="noopener">View on GitHub ↗</a>
+        ${globalRankHtml}
       </div>
     </div>
 
     <h3 class="profile-h3">Metric breakdown</h3>
     <div class="metric-grid">
-      ${METRICS.map((m) => `
+      ${METRICS.map((m) => {
+        const rank = ranks[m];
+        const medal = rank === 1 ? "🥇 " : rank === 2 ? "🥈 " : rank === 3 ? "🥉 " : "";
+        const rankHtml = rank
+          ? `<span class="metric-rank ${rank <= 3 ? "metric-rank--top" : ""}">${medal}#${rank}</span>`
+          : `<span class="metric-rank metric-rank--none">—</span>`;
+        return `
         <div class="metric-card">
           <span class="metric-label">${LABELS[m]}</span>
           <span class="metric-value">${(filtered[m] || 0).toLocaleString()}</span>
+          ${rankHtml}
           <span class="metric-total">${(allTime[m] || 0).toLocaleString()} all-time</span>
           ${m === "other_lines" && user.other_top_ext ? `<span class="metric-ext">top: ${escapeHtml(user.other_top_ext)}</span>` : ""}
-        </div>
-      `).join("")}
+        </div>`;
+      }).join("")}
     </div>
 
     <h3 class="profile-h3">Per repository (all time)</h3>

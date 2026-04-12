@@ -640,6 +640,35 @@ footer code {
   font-family: "JetBrains Mono", monospace;
   opacity: 0.85;
 }
+.metric-rank {
+  font-size: 0.72rem;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.1rem 0.4rem;
+  align-self: flex-start;
+}
+.metric-rank--top {
+  color: var(--warn);
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.25);
+}
+.metric-rank--none {
+  color: var(--muted-2);
+  background: transparent;
+  border-color: transparent;
+}
+.profile-global-rank {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  letter-spacing: 0.02em;
+}
 
 .repo-table-wrap { overflow-x: auto; }
 .repo-table {

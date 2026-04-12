@@ -157,11 +157,16 @@ function computedUsers() {
     per_repo: u.per_repo || {},
     ...aggregate(u, from, to, currentRepo),
   }));
-  const maxes = Object.fromEntries(
-    METRICS.map((m) => [m, Math.max(0, ...rows.map((r) => r[m]))])
+  // Normalise by all-time maxes so the score is stable across time windows.
+  // Using period maxes caused counter-intuitive rank inversions: a contributor
+  // active only last week could rank *better* on "last month" than on "last week"
+  // because unrelated contributors entering the wider window inflated the maxes
+  // of metrics where the person had 0, collapsing their competitors' scores.
+  const allTimeMaxes = Object.fromEntries(
+    METRICS.map((m) => [m, Math.max(0, ...DATA.users.map((u) => u[m] || 0))])
   );
   for (const r of rows) {
-    const parts = METRICS.map((m) => (maxes[m] > 0 ? r[m] / maxes[m] : 0));
+    const parts = METRICS.map((m) => (allTimeMaxes[m] > 0 ? r[m] / allTimeMaxes[m] : 0));
     r.global_score = parts.reduce((a, b) => a + b, 0) / parts.length;
   }
   return rows;

@@ -42,13 +42,16 @@ For each contributor, the UI shows their **dominant extension** (the file type t
 
 ### How the global score is calculated
 
-`global_score` is a number between 0 and 1 computed client-side from the **currently visible data** (respecting the date range and repo filter):
+`global_score` is a number between 0 and 1 computed client-side. It measures a contributor's activity in the selected period relative to the **all-time record holders** for each metric:
 
-1. For each metric `m`, find the maximum value across all contributors: `max_m`.
-2. For each contributor, compute their normalized value on each metric: `score_m = value_m / max_m` (0 if `max_m = 0`).
-3. The global score is the **mean of all normalized scores**: `global_score = (Σ score_m) / n_metrics`.
+1. For each metric `m`, find the all-time maximum value across all contributors: `max_m` (fixed, independent of the current date filter).
+2. For each contributor, sum the values in the selected date range for each metric.
+3. Compute their normalized value: `score_m = period_value_m / max_m` (0 if `max_m = 0`).
+4. The global score is the **mean of all normalized scores**: `global_score = (Σ score_m) / n_metrics`.
 
-All 9 metrics (`commits`, `java_lines`, `gaml_lines`, `other_lines`, `wiki_lines`, `issues_opened`, `issues_closed`, `prs_opened`, `prs_merged`) have equal weight. A score of 1.0 means the contributor leads on every single metric within the selected scope.
+All 9 metrics (`commits`, `java_lines`, `gaml_lines`, `other_lines`, `wiki_lines`, `issues_opened`, `issues_closed`, `prs_opened`, `prs_merged`) have equal weight.
+
+**Why all-time maxes?** Normalising by the *current window's* maxes caused counter-intuitive rank inversions: a contributor active only last week could rank *better* on "last month" than on "last week", because contributors entering the wider window inflated the maxima on metrics where their competitors had 0, collapsing those competitors' scores. With fixed all-time maxes the score is monotone — widening the time window can only help contributors who actually worked in the added period.
 
 Every metric is bucketed two ways in the output `data.json`:
 

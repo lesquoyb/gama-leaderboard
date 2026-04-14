@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T06:54:43.447556+00:00",
+  "generated_at": "2026-04-14T06:45:49.142591+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -618,7 +618,8 @@
     "2026-04-10",
     "2026-04-11",
     "2026-04-12",
-    "2026-04-13"
+    "2026-04-13",
+    "2026-04-14"
   ],
   "repos": [
     "gama-platform/.github",
@@ -643,10 +644,10 @@
       "login": "AlexisDrogoul",
       "avatar_url": "https://avatars.githubusercontent.com/u/579256?v=4",
       "html_url": "https://github.com/AlexisDrogoul",
-      "commits": 961,
-      "java_lines": 1235692,
+      "commits": 959,
+      "java_lines": 1235684,
       "gaml_lines": 14165,
-      "other_lines": 135534,
+      "other_lines": 135528,
       "wiki_lines": 0,
       "issues_opened": 26,
       "issues_closed": 14,
@@ -875,10 +876,10 @@
           "prs_merged": 0
         },
         "2024-02-23": {
-          "commits": 4,
-          "java_lines": 5401,
+          "commits": 2,
+          "java_lines": 5393,
           "gaml_lines": 0,
-          "other_lines": 259,
+          "other_lines": 253,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -3429,10 +3430,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 868,
-          "java_lines": 1212825,
+          "commits": 866,
+          "java_lines": 1212817,
           "gaml_lines": 14124,
-          "other_lines": 127301,
+          "other_lines": 127295,
           "wiki_lines": 0,
           "issues_opened": 26,
           "issues_closed": 14,
@@ -3446,12 +3447,12 @@
       "login": "lesquoyb",
       "avatar_url": "https://avatars.githubusercontent.com/u/6374469?v=4",
       "html_url": "https://github.com/lesquoyb",
-      "commits": 379,
-      "java_lines": 50116,
+      "commits": 380,
+      "java_lines": 50482,
       "gaml_lines": 6582,
       "other_lines": 10841,
       "wiki_lines": 0,
-      "issues_opened": 280,
+      "issues_opened": 282,
       "issues_closed": 161,
       "prs_opened": 53,
       "prs_merged": 48,
@@ -4182,6 +4183,17 @@
           "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 1
+        },
+        "2026-04-13": {
+          "commits": 1,
+          "java_lines": 366,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 3,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
         },
         "2026-04-11": {
           "commits": 8,
@@ -5360,13 +5372,13 @@
           "prs_opened": 0,
           "prs_merged": 0
         },
-        "2026-04-13": {
+        "2026-04-14": {
           "commits": 0,
           "java_lines": 0,
           "gaml_lines": 0,
           "other_lines": 0,
           "wiki_lines": 0,
-          "issues_opened": 2,
+          "issues_opened": 1,
           "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 0
@@ -6562,12 +6574,12 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 305,
-          "java_lines": 49558,
+          "commits": 306,
+          "java_lines": 49924,
           "gaml_lines": 5644,
           "other_lines": 3898,
           "wiki_lines": 0,
-          "issues_opened": 230,
+          "issues_opened": 232,
           "issues_closed": 132,
           "prs_opened": 53,
           "prs_merged": 48
@@ -6612,9 +6624,9 @@
       "login": "ptaillandier",
       "avatar_url": "https://avatars.githubusercontent.com/u/1506077?v=4",
       "html_url": "https://github.com/ptaillandier",
-      "commits": 115,
-      "java_lines": 6785,
-      "gaml_lines": 5798,
+      "commits": 113,
+      "java_lines": 6738,
+      "gaml_lines": 5793,
       "other_lines": 29270,
       "wiki_lines": 0,
       "issues_opened": 11,
@@ -7239,17 +7251,6 @@
           "prs_opened": 0,
           "prs_merged": 0
         },
-        "2024-02-29": {
-          "commits": 2,
-          "java_lines": 47,
-          "gaml_lines": 5,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
         "2026-03-13": {
           "commits": 0,
           "java_lines": 0,
@@ -7440,9 +7441,9 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 68,
-          "java_lines": 993,
-          "gaml_lines": 1813,
+          "commits": 66,
+          "java_lines": 946,
+          "gaml_lines": 1808,
           "other_lines": 219,
           "wiki_lines": 0,
           "issues_opened": 11,
@@ -7473,16 +7474,16 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.6732
+      "global_score": 0.6658
     },
     {
       "login": "RoiArthurB",
       "avatar_url": "https://avatars.githubusercontent.com/u/16764085?v=4",
       "html_url": "https://github.com/RoiArthurB",
-      "commits": 354,
+      "commits": 341,
       "java_lines": 1706,
       "gaml_lines": 410,
-      "other_lines": 204416,
+      "other_lines": 204331,
       "wiki_lines": 0,
       "issues_opened": 27,
       "issues_closed": 10,
@@ -8492,32 +8493,10 @@
           "prs_merged": 0
         },
         "2024-02-29": {
-          "commits": 4,
+          "commits": 1,
           "java_lines": 0,
           "gaml_lines": 0,
-          "other_lines": 69,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-02-24": {
-          "commits": 4,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 12,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-02-23": {
-          "commits": 6,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 28,
+          "other_lines": 24,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -8791,10 +8770,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 201,
+          "commits": 188,
           "java_lines": 1654,
           "gaml_lines": 160,
-          "other_lines": 6215,
+          "other_lines": 6130,
           "wiki_lines": 0,
           "issues_opened": 18,
           "issues_closed": 8,
@@ -8803,708 +8782,6 @@
         }
       },
       "global_score": 0.6472
-    },
-    {
-      "login": "chapuisk",
-      "avatar_url": "https://avatars.githubusercontent.com/u/13599506?v=4",
-      "html_url": "https://github.com/chapuisk",
-      "commits": 89,
-      "java_lines": 5468,
-      "gaml_lines": 5286,
-      "other_lines": 23914,
-      "wiki_lines": 0,
-      "issues_opened": 16,
-      "issues_closed": 14,
-      "prs_opened": 7,
-      "prs_merged": 7,
-      "other_top_ext": ".csv",
-      "timeline": {
-        "2024-02-20": {
-          "commits": 2,
-          "java_lines": 0,
-          "gaml_lines": 2,
-          "other_lines": 11,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-02-19": {
-          "commits": 4,
-          "java_lines": 3,
-          "gaml_lines": 17,
-          "other_lines": 4,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-05-06": {
-          "commits": 1,
-          "java_lines": 50,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2024-02-22": {
-          "commits": 8,
-          "java_lines": 207,
-          "gaml_lines": 35,
-          "other_lines": 5758,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-02-21": {
-          "commits": 4,
-          "java_lines": 846,
-          "gaml_lines": 0,
-          "other_lines": 203,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-04-18": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-04-19": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2026-04-10": {
-          "commits": 4,
-          "java_lines": 69,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2026-04-09": {
-          "commits": 10,
-          "java_lines": 599,
-          "gaml_lines": 365,
-          "other_lines": 160,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 1
-        },
-        "2026-04-08": {
-          "commits": 3,
-          "java_lines": 84,
-          "gaml_lines": 84,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2026-04-07": {
-          "commits": 2,
-          "java_lines": 13,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2026-04-06": {
-          "commits": 4,
-          "java_lines": 16,
-          "gaml_lines": 0,
-          "other_lines": 16,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-10-02": {
-          "commits": 1,
-          "java_lines": 9,
-          "gaml_lines": 7,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-09-18": {
-          "commits": 2,
-          "java_lines": 48,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-09-16": {
-          "commits": 2,
-          "java_lines": 11,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-09-10": {
-          "commits": 1,
-          "java_lines": 6,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-08-19": {
-          "commits": 2,
-          "java_lines": 25,
-          "gaml_lines": 4,
-          "other_lines": 201,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-08-12": {
-          "commits": 1,
-          "java_lines": 185,
-          "gaml_lines": 18,
-          "other_lines": 230,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-08-11": {
-          "commits": 1,
-          "java_lines": 165,
-          "gaml_lines": 2,
-          "other_lines": 31,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2025-05-05": {
-          "commits": 1,
-          "java_lines": 4,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2025-04-01": {
-          "commits": 1,
-          "java_lines": 2,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2025-03-31": {
-          "commits": 1,
-          "java_lines": 8,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2024-11-01": {
-          "commits": 2,
-          "java_lines": 381,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2024-08-26": {
-          "commits": 2,
-          "java_lines": 185,
-          "gaml_lines": 11,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2024-08-14": {
-          "commits": 2,
-          "java_lines": 85,
-          "gaml_lines": 8,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-07-04": {
-          "commits": 1,
-          "java_lines": 10,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-07-02": {
-          "commits": 2,
-          "java_lines": 19,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-06-28": {
-          "commits": 1,
-          "java_lines": 3,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-06-21": {
-          "commits": 2,
-          "java_lines": 39,
-          "gaml_lines": 4,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-05-31": {
-          "commits": 1,
-          "java_lines": 1135,
-          "gaml_lines": 26,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-05-27": {
-          "commits": 3,
-          "java_lines": 916,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2024-02-28": {
-          "commits": 1,
-          "java_lines": 345,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-12-06": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2025-08-13": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-09-09": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-10-28": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 422,
-          "other_lines": 59,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-05-06": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 2,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-06-12": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-28": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-24": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 493,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 2,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-29": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-06-13": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-19": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 664,
-          "other_lines": 20,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-05-16": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-05": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-08": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-11-04": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2024-09-23": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2024-08-15": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2025-03-10": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 51,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-02-28": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 62,
-          "other_lines": 20,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-02-24": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 174,
-          "other_lines": 16897,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-09-15": {
-          "commits": 4,
-          "java_lines": 0,
-          "gaml_lines": 1832,
-          "other_lines": 176,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-09-11": {
-          "commits": 3,
-          "java_lines": 0,
-          "gaml_lines": 549,
-          "other_lines": 60,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-27": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 255,
-          "other_lines": 2,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-22": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 91,
-          "other_lines": 2,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-21": {
-          "commits": 2,
-          "java_lines": 0,
-          "gaml_lines": 110,
-          "other_lines": 64,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "per_repo": {
-        "gama-platform/gama.old": {
-          "commits": 6,
-          "java_lines": 3,
-          "gaml_lines": 19,
-          "other_lines": 15,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "gama-platform/gama.experimental": {
-          "commits": 13,
-          "java_lines": 1103,
-          "gaml_lines": 35,
-          "other_lines": 5961,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "gama-platform/gama-platform.github.io": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "gama-platform/gama": {
-          "commits": 53,
-          "java_lines": 4362,
-          "gaml_lines": 529,
-          "other_lines": 638,
-          "wiki_lines": 0,
-          "issues_opened": 14,
-          "issues_closed": 12,
-          "prs_opened": 7,
-          "prs_merged": 7
-        },
-        "gama-platform/gama.models": {
-          "commits": 17,
-          "java_lines": 0,
-          "gaml_lines": 4703,
-          "other_lines": 17300,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "global_score": 0.623
     },
     {
       "login": "benoitgaudou",
@@ -9953,7 +9230,698 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.6116
+      "global_score": 0.6191
+    },
+    {
+      "login": "chapuisk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13599506?v=4",
+      "html_url": "https://github.com/chapuisk",
+      "commits": 88,
+      "java_lines": 5123,
+      "gaml_lines": 5286,
+      "other_lines": 23914,
+      "wiki_lines": 0,
+      "issues_opened": 16,
+      "issues_closed": 14,
+      "prs_opened": 7,
+      "prs_merged": 7,
+      "other_top_ext": ".csv",
+      "timeline": {
+        "2024-02-20": {
+          "commits": 2,
+          "java_lines": 0,
+          "gaml_lines": 2,
+          "other_lines": 11,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-02-19": {
+          "commits": 4,
+          "java_lines": 3,
+          "gaml_lines": 17,
+          "other_lines": 4,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-05-06": {
+          "commits": 1,
+          "java_lines": 50,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2024-02-22": {
+          "commits": 8,
+          "java_lines": 207,
+          "gaml_lines": 35,
+          "other_lines": 5758,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-02-21": {
+          "commits": 4,
+          "java_lines": 846,
+          "gaml_lines": 0,
+          "other_lines": 203,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-04-18": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-04-19": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-10": {
+          "commits": 4,
+          "java_lines": 69,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-09": {
+          "commits": 10,
+          "java_lines": 599,
+          "gaml_lines": 365,
+          "other_lines": 160,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 1
+        },
+        "2026-04-08": {
+          "commits": 3,
+          "java_lines": 84,
+          "gaml_lines": 84,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-07": {
+          "commits": 2,
+          "java_lines": 13,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-06": {
+          "commits": 4,
+          "java_lines": 16,
+          "gaml_lines": 0,
+          "other_lines": 16,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-10-02": {
+          "commits": 1,
+          "java_lines": 9,
+          "gaml_lines": 7,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-09-18": {
+          "commits": 2,
+          "java_lines": 48,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-09-16": {
+          "commits": 2,
+          "java_lines": 11,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-09-10": {
+          "commits": 1,
+          "java_lines": 6,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-08-19": {
+          "commits": 2,
+          "java_lines": 25,
+          "gaml_lines": 4,
+          "other_lines": 201,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-08-12": {
+          "commits": 1,
+          "java_lines": 185,
+          "gaml_lines": 18,
+          "other_lines": 230,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-08-11": {
+          "commits": 1,
+          "java_lines": 165,
+          "gaml_lines": 2,
+          "other_lines": 31,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2025-05-05": {
+          "commits": 1,
+          "java_lines": 4,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2025-04-01": {
+          "commits": 1,
+          "java_lines": 2,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2025-03-31": {
+          "commits": 1,
+          "java_lines": 8,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2024-11-01": {
+          "commits": 2,
+          "java_lines": 381,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2024-08-26": {
+          "commits": 2,
+          "java_lines": 185,
+          "gaml_lines": 11,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2024-08-14": {
+          "commits": 2,
+          "java_lines": 85,
+          "gaml_lines": 8,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-07-04": {
+          "commits": 1,
+          "java_lines": 10,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-07-02": {
+          "commits": 2,
+          "java_lines": 19,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-06-28": {
+          "commits": 1,
+          "java_lines": 3,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-06-21": {
+          "commits": 2,
+          "java_lines": 39,
+          "gaml_lines": 4,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-05-31": {
+          "commits": 1,
+          "java_lines": 1135,
+          "gaml_lines": 26,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-05-27": {
+          "commits": 3,
+          "java_lines": 916,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2025-12-06": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2025-08-13": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-09-09": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-10-28": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 422,
+          "other_lines": 59,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-05-06": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 2,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-06-12": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-28": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-24": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 493,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 2,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-29": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-06-13": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-19": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 664,
+          "other_lines": 20,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-05-16": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-05": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-08": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-11-04": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2024-09-23": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2024-08-15": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2025-03-10": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 51,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-02-28": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 62,
+          "other_lines": 20,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-02-24": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 174,
+          "other_lines": 16897,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-09-15": {
+          "commits": 4,
+          "java_lines": 0,
+          "gaml_lines": 1832,
+          "other_lines": 176,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-09-11": {
+          "commits": 3,
+          "java_lines": 0,
+          "gaml_lines": 549,
+          "other_lines": 60,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-27": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 255,
+          "other_lines": 2,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-22": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 91,
+          "other_lines": 2,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2024-03-21": {
+          "commits": 2,
+          "java_lines": 0,
+          "gaml_lines": 110,
+          "other_lines": 64,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "per_repo": {
+        "gama-platform/gama.old": {
+          "commits": 6,
+          "java_lines": 3,
+          "gaml_lines": 19,
+          "other_lines": 15,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "gama-platform/gama.experimental": {
+          "commits": 13,
+          "java_lines": 1103,
+          "gaml_lines": 35,
+          "other_lines": 5961,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "gama-platform/gama-platform.github.io": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "gama-platform/gama": {
+          "commits": 52,
+          "java_lines": 4017,
+          "gaml_lines": 529,
+          "other_lines": 638,
+          "wiki_lines": 0,
+          "issues_opened": 14,
+          "issues_closed": 12,
+          "prs_opened": 7,
+          "prs_merged": 7
+        },
+        "gama-platform/gama.models": {
+          "commits": 17,
+          "java_lines": 0,
+          "gaml_lines": 4703,
+          "other_lines": 17300,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "global_score": 0.6155
     },
     {
       "login": "agrignard",
@@ -11093,7 +11061,148 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.4917
+      "global_score": 0.4842
+    },
+    {
+      "login": "Paul-Saves",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56302141?v=4",
+      "html_url": "https://github.com/Paul-Saves",
+      "commits": 44,
+      "java_lines": 15766,
+      "gaml_lines": 578,
+      "other_lines": 41,
+      "wiki_lines": 0,
+      "issues_opened": 6,
+      "issues_closed": 2,
+      "prs_opened": 6,
+      "prs_merged": 5,
+      "other_top_ext": "(no ext)",
+      "timeline": {
+        "2026-04-06": {
+          "commits": 7,
+          "java_lines": 444,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 3,
+          "issues_closed": 1,
+          "prs_opened": 1,
+          "prs_merged": 1
+        },
+        "2026-04-13": {
+          "commits": 10,
+          "java_lines": 9491,
+          "gaml_lines": 30,
+          "other_lines": 32,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2026-04-12": {
+          "commits": 6,
+          "java_lines": 668,
+          "gaml_lines": 71,
+          "other_lines": 6,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2026-04-10": {
+          "commits": 2,
+          "java_lines": 383,
+          "gaml_lines": 50,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        },
+        "2026-04-09": {
+          "commits": 8,
+          "java_lines": 1302,
+          "gaml_lines": 89,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2026-04-08": {
+          "commits": 2,
+          "java_lines": 1457,
+          "gaml_lines": 131,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 2,
+          "prs_merged": 1
+        },
+        "2026-04-07": {
+          "commits": 9,
+          "java_lines": 2021,
+          "gaml_lines": 207,
+          "other_lines": 3,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 1
+        },
+        "2025-05-05": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 3,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-06-03": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "per_repo": {
+        "gama-platform/gama-platform.github.io": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "gama-platform/gama": {
+          "commits": 44,
+          "java_lines": 15766,
+          "gaml_lines": 578,
+          "other_lines": 41,
+          "wiki_lines": 0,
+          "issues_opened": 5,
+          "issues_closed": 2,
+          "prs_opened": 6,
+          "prs_merged": 5
+        }
+      },
+      "global_score": 0.4806
     },
     {
       "login": "hqnghi88",
@@ -11498,7 +11607,7 @@
           "prs_merged": 2
         }
       },
-      "global_score": 0.4722
+      "global_score": 0.4694
     },
     {
       "login": "thedoctor2001",
@@ -12068,7 +12177,7 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.4603
+      "global_score": 0.4528
     },
     {
       "login": "Vezonne",
@@ -12528,137 +12637,7 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.444
-    },
-    {
-      "login": "Paul-Saves",
-      "avatar_url": "https://avatars.githubusercontent.com/u/56302141?v=4",
-      "html_url": "https://github.com/Paul-Saves",
-      "commits": 28,
-      "java_lines": 5607,
-      "gaml_lines": 477,
-      "other_lines": 3,
-      "wiki_lines": 0,
-      "issues_opened": 6,
-      "issues_closed": 2,
-      "prs_opened": 6,
-      "prs_merged": 4,
-      "other_top_ext": ".properties",
-      "timeline": {
-        "2026-04-06": {
-          "commits": 7,
-          "java_lines": 444,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 3,
-          "issues_closed": 1,
-          "prs_opened": 1,
-          "prs_merged": 1
-        },
-        "2026-04-10": {
-          "commits": 2,
-          "java_lines": 383,
-          "gaml_lines": 50,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        },
-        "2026-04-09": {
-          "commits": 8,
-          "java_lines": 1302,
-          "gaml_lines": 89,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2026-04-08": {
-          "commits": 2,
-          "java_lines": 1457,
-          "gaml_lines": 131,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 2,
-          "prs_merged": 1
-        },
-        "2026-04-07": {
-          "commits": 9,
-          "java_lines": 2021,
-          "gaml_lines": 207,
-          "other_lines": 3,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 1
-        },
-        "2025-05-05": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 3,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-06-03": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 1,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2026-04-12": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        }
-      },
-      "per_repo": {
-        "gama-platform/gama-platform.github.io": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 1,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "gama-platform/gama": {
-          "commits": 28,
-          "java_lines": 5607,
-          "gaml_lines": 477,
-          "other_lines": 3,
-          "wiki_lines": 0,
-          "issues_opened": 5,
-          "issues_closed": 2,
-          "prs_opened": 6,
-          "prs_merged": 4
-        }
-      },
-      "global_score": 0.4267
+      "global_score": 0.4412
     },
     {
       "login": "GuillaumeLeroy34",
@@ -15871,7 +15850,7 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.1479
+      "global_score": 0.142
     },
     {
       "login": "benoit.gaudou@gmail.com",
@@ -16001,7 +15980,7 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.144
+      "global_score": 0.1413
     },
     {
       "login": "GetUwU",
@@ -17468,59 +17447,6 @@
       "global_score": 0.0896
     },
     {
-      "login": "hqnghi@m1max.local",
-      "avatar_url": "",
-      "html_url": "",
-      "commits": 3,
-      "java_lines": 223,
-      "gaml_lines": 126,
-      "other_lines": 11,
-      "wiki_lines": 0,
-      "issues_opened": 0,
-      "issues_closed": 0,
-      "prs_opened": 0,
-      "prs_merged": 0,
-      "other_top_ext": "(no ext)",
-      "timeline": {
-        "2025-10-31": {
-          "commits": 2,
-          "java_lines": 17,
-          "gaml_lines": 100,
-          "other_lines": 11,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2025-10-29": {
-          "commits": 1,
-          "java_lines": 206,
-          "gaml_lines": 26,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "per_repo": {
-        "gama-platform/gama.experimental": {
-          "commits": 3,
-          "java_lines": 223,
-          "gaml_lines": 126,
-          "other_lines": 11,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "global_score": 0.0891
-    },
-    {
       "login": "jdzucker",
       "avatar_url": "https://avatars.githubusercontent.com/u/12623800?v=4",
       "html_url": "https://github.com/jdzucker",
@@ -17594,6 +17520,59 @@
         }
       },
       "global_score": 0.0834
+    },
+    {
+      "login": "hqnghi@m1max.local",
+      "avatar_url": "",
+      "html_url": "",
+      "commits": 3,
+      "java_lines": 223,
+      "gaml_lines": 126,
+      "other_lines": 11,
+      "wiki_lines": 0,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "other_top_ext": "(no ext)",
+      "timeline": {
+        "2025-10-31": {
+          "commits": 2,
+          "java_lines": 17,
+          "gaml_lines": 100,
+          "other_lines": 11,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2025-10-29": {
+          "commits": 1,
+          "java_lines": 206,
+          "gaml_lines": 26,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "per_repo": {
+        "gama-platform/gama.experimental": {
+          "commits": 3,
+          "java_lines": 223,
+          "gaml_lines": 126,
+          "other_lines": 11,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "global_score": 0.0833
     },
     {
       "login": "49364897+danghh333@users.noreply.github.com",
@@ -18426,59 +18405,6 @@
       "global_score": 0.0459
     },
     {
-      "login": "ThibaultDenoual",
-      "avatar_url": "https://avatars.githubusercontent.com/u/171357555?v=4",
-      "html_url": "https://github.com/ThibaultDenoual",
-      "commits": 2,
-      "java_lines": 0,
-      "gaml_lines": 0,
-      "other_lines": 40,
-      "wiki_lines": 0,
-      "issues_opened": 0,
-      "issues_closed": 0,
-      "prs_opened": 1,
-      "prs_merged": 1,
-      "other_top_ext": ".md",
-      "timeline": {
-        "2024-10-22": {
-          "commits": 2,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 40,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 0
-        },
-        "2025-07-29": {
-          "commits": 0,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 0,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 1
-        }
-      },
-      "per_repo": {
-        "gama-platform/gama.docker": {
-          "commits": 2,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 40,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 1,
-          "prs_merged": 1
-        }
-      },
-      "global_score": 0.0456
-    },
-    {
       "login": "danghh333",
       "avatar_url": "https://avatars.githubusercontent.com/u/49364897?v=4",
       "html_url": "https://github.com/danghh333",
@@ -18644,6 +18570,59 @@
           "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 0
+        }
+      },
+      "global_score": 0.0398
+    },
+    {
+      "login": "ThibaultDenoual",
+      "avatar_url": "https://avatars.githubusercontent.com/u/171357555?v=4",
+      "html_url": "https://github.com/ThibaultDenoual",
+      "commits": 2,
+      "java_lines": 0,
+      "gaml_lines": 0,
+      "other_lines": 40,
+      "wiki_lines": 0,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "prs_opened": 1,
+      "prs_merged": 1,
+      "other_top_ext": ".md",
+      "timeline": {
+        "2024-10-22": {
+          "commits": 2,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 40,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 0
+        },
+        "2025-07-29": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 1
+        }
+      },
+      "per_repo": {
+        "gama-platform/gama.docker": {
+          "commits": 2,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 40,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 1
         }
       },
       "global_score": 0.0398
@@ -18925,48 +18904,6 @@
       "global_score": 0.0309
     },
     {
-      "login": "WoodenMaiden",
-      "avatar_url": "https://avatars.githubusercontent.com/u/62052467?v=4",
-      "html_url": "https://github.com/WoodenMaiden",
-      "commits": 1,
-      "java_lines": 0,
-      "gaml_lines": 0,
-      "other_lines": 28,
-      "wiki_lines": 0,
-      "issues_opened": 0,
-      "issues_closed": 0,
-      "prs_opened": 0,
-      "prs_merged": 0,
-      "other_top_ext": ".yml",
-      "timeline": {
-        "2024-02-15": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 28,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "per_repo": {
-        "gama-platform/gama.old": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 28,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        }
-      },
-      "global_score": 0.0259
-    },
-    {
       "login": "KillianTrouilletGit",
       "avatar_url": "https://avatars.githubusercontent.com/u/180845727?v=4",
       "html_url": "https://github.com/KillianTrouilletGit",
@@ -19082,6 +19019,48 @@
         }
       },
       "global_score": 0.0248
+    },
+    {
+      "login": "WoodenMaiden",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62052467?v=4",
+      "html_url": "https://github.com/WoodenMaiden",
+      "commits": 1,
+      "java_lines": 0,
+      "gaml_lines": 0,
+      "other_lines": 28,
+      "wiki_lines": 0,
+      "issues_opened": 0,
+      "issues_closed": 0,
+      "prs_opened": 0,
+      "prs_merged": 0,
+      "other_top_ext": ".yml",
+      "timeline": {
+        "2024-02-15": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 28,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "per_repo": {
+        "gama-platform/gama.old": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 28,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        }
+      },
+      "global_score": 0.02
     },
     {
       "login": "sterofex",

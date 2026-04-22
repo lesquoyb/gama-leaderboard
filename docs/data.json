@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T06:46:25.711066+00:00",
+  "generated_at": "2026-04-22T06:53:46.599033+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -624,7 +624,9 @@
     "2026-04-17",
     "2026-04-18",
     "2026-04-19",
-    "2026-04-20"
+    "2026-04-20",
+    "2026-04-21",
+    "2026-04-22"
   ],
   "repos": [
     "gama-platform/.github",
@@ -650,9 +652,9 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/579256?v=4",
       "html_url": "https://github.com/AlexisDrogoul",
       "commits": 964,
-      "java_lines": 1241338,
-      "gaml_lines": 14259,
-      "other_lines": 135953,
+      "java_lines": 1241350,
+      "gaml_lines": 14287,
+      "other_lines": 136103,
       "wiki_lines": 0,
       "issues_opened": 26,
       "issues_closed": 14,
@@ -859,10 +861,10 @@
           "prs_merged": 0
         },
         "2024-03-07": {
-          "commits": 2,
+          "commits": 1,
           "java_lines": 315,
           "gaml_lines": 0,
-          "other_lines": 51,
+          "other_lines": 50,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -973,6 +975,17 @@
           "java_lines": 0,
           "gaml_lines": 0,
           "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-21": {
+          "commits": 1,
+          "java_lines": 12,
+          "gaml_lines": 28,
+          "other_lines": 151,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -3469,9 +3482,9 @@
         },
         "gama-platform/gama": {
           "commits": 871,
-          "java_lines": 1218471,
-          "gaml_lines": 14218,
-          "other_lines": 127720,
+          "java_lines": 1218483,
+          "gaml_lines": 14246,
+          "other_lines": 127870,
           "wiki_lines": 0,
           "issues_opened": 26,
           "issues_closed": 14,
@@ -9932,10 +9945,10 @@
       "login": "agrignard",
       "avatar_url": "https://avatars.githubusercontent.com/u/3928502?v=4",
       "html_url": "https://github.com/agrignard",
-      "commits": 118,
+      "commits": 119,
       "java_lines": 30,
       "gaml_lines": 9585,
-      "other_lines": 205755,
+      "other_lines": 205756,
       "wiki_lines": 0,
       "issues_opened": 70,
       "issues_closed": 43,
@@ -10127,6 +10140,17 @@
           "wiki_lines": 0,
           "issues_opened": 3,
           "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-22": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 1,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 0
         },
@@ -10859,10 +10883,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 29,
+          "commits": 30,
           "java_lines": 30,
           "gaml_lines": 1784,
-          "other_lines": 14936,
+          "other_lines": 14937,
           "wiki_lines": 0,
           "issues_opened": 48,
           "issues_closed": 29,

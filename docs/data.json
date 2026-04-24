@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T06:57:28.727227+00:00",
+  "generated_at": "2026-04-24T06:54:58.001023+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -626,7 +626,9 @@
     "2026-04-19",
     "2026-04-20",
     "2026-04-21",
-    "2026-04-22"
+    "2026-04-22",
+    "2026-04-23",
+    "2026-04-24"
   ],
   "repos": [
     "gama-platform/.github",
@@ -3498,12 +3500,12 @@
       "login": "lesquoyb",
       "avatar_url": "https://avatars.githubusercontent.com/u/6374469?v=4",
       "html_url": "https://github.com/lesquoyb",
-      "commits": 380,
-      "java_lines": 50482,
-      "gaml_lines": 6582,
-      "other_lines": 10841,
+      "commits": 385,
+      "java_lines": 50697,
+      "gaml_lines": 6652,
+      "other_lines": 10860,
       "wiki_lines": 0,
-      "issues_opened": 282,
+      "issues_opened": 283,
       "issues_closed": 161,
       "prs_opened": 53,
       "prs_merged": 48,
@@ -4234,6 +4236,17 @@
           "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 1
+        },
+        "2026-04-23": {
+          "commits": 1,
+          "java_lines": 215,
+          "gaml_lines": 70,
+          "other_lines": 12,
+          "wiki_lines": 0,
+          "issues_opened": 1,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
         },
         "2026-04-13": {
           "commits": 1,
@@ -6468,6 +6481,17 @@
           "prs_opened": 0,
           "prs_merged": 0
         },
+        "2026-04-24": {
+          "commits": 4,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 7,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
         "2026-01-28": {
           "commits": 2,
           "java_lines": 0,
@@ -6625,12 +6649,12 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 306,
-          "java_lines": 49924,
-          "gaml_lines": 5644,
-          "other_lines": 3898,
+          "commits": 307,
+          "java_lines": 50139,
+          "gaml_lines": 5714,
+          "other_lines": 3910,
           "wiki_lines": 0,
-          "issues_opened": 232,
+          "issues_opened": 233,
           "issues_closed": 132,
           "prs_opened": 53,
           "prs_merged": 48
@@ -6647,10 +6671,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama-gymnasium": {
-          "commits": 18,
+          "commits": 22,
           "java_lines": 0,
           "gaml_lines": 208,
-          "other_lines": 1065,
+          "other_lines": 1072,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -7531,10 +7555,10 @@
       "login": "RoiArthurB",
       "avatar_url": "https://avatars.githubusercontent.com/u/16764085?v=4",
       "html_url": "https://github.com/RoiArthurB",
-      "commits": 334,
-      "java_lines": 1706,
+      "commits": 333,
+      "java_lines": 1669,
       "gaml_lines": 427,
-      "other_lines": 204135,
+      "other_lines": 204131,
       "wiki_lines": 0,
       "issues_opened": 27,
       "issues_closed": 10,
@@ -7884,10 +7908,10 @@
           "prs_merged": 0
         },
         "2024-03-08": {
-          "commits": 3,
-          "java_lines": 37,
+          "commits": 2,
+          "java_lines": 0,
           "gaml_lines": 0,
-          "other_lines": 113,
+          "other_lines": 109,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -8799,10 +8823,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 180,
-          "java_lines": 1654,
+          "commits": 179,
+          "java_lines": 1617,
           "gaml_lines": 177,
-          "other_lines": 5908,
+          "other_lines": 5904,
           "wiki_lines": 0,
           "issues_opened": 18,
           "issues_closed": 8,

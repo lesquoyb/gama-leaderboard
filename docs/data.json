@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T06:54:58.001023+00:00",
+  "generated_at": "2026-04-25T06:41:55.181292+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -3500,10 +3500,10 @@
       "login": "lesquoyb",
       "avatar_url": "https://avatars.githubusercontent.com/u/6374469?v=4",
       "html_url": "https://github.com/lesquoyb",
-      "commits": 385,
+      "commits": 388,
       "java_lines": 50697,
       "gaml_lines": 6652,
-      "other_lines": 10860,
+      "other_lines": 10882,
       "wiki_lines": 0,
       "issues_opened": 283,
       "issues_closed": 161,
@@ -6482,10 +6482,10 @@
           "prs_merged": 0
         },
         "2026-04-24": {
-          "commits": 4,
+          "commits": 7,
           "java_lines": 0,
           "gaml_lines": 0,
-          "other_lines": 7,
+          "other_lines": 29,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -6671,10 +6671,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama-gymnasium": {
-          "commits": 22,
+          "commits": 25,
           "java_lines": 0,
           "gaml_lines": 208,
-          "other_lines": 1072,
+          "other_lines": 1094,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,

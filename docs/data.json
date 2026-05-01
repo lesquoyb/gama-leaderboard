@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-30T07:11:15.466229+00:00",
+  "generated_at": "2026-05-01T07:07:25.190961+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -632,7 +632,9 @@
     "2026-04-25",
     "2026-04-26",
     "2026-04-27",
-    "2026-04-28"
+    "2026-04-28",
+    "2026-04-30",
+    "2026-05-01"
   ],
   "repos": [
     "gama-platform/.github",
@@ -657,10 +659,10 @@
       "login": "AlexisDrogoul",
       "avatar_url": "https://avatars.githubusercontent.com/u/579256?v=4",
       "html_url": "https://github.com/AlexisDrogoul",
-      "commits": 966,
-      "java_lines": 1241372,
+      "commits": 964,
+      "java_lines": 1241755,
       "gaml_lines": 14287,
-      "other_lines": 136103,
+      "other_lines": 136097,
       "wiki_lines": 0,
       "issues_opened": 26,
       "issues_closed": 14,
@@ -979,6 +981,17 @@
         "2024-02-17": {
           "commits": 1,
           "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-04-30": {
+          "commits": 1,
+          "java_lines": 712,
           "gaml_lines": 0,
           "other_lines": 0,
           "wiki_lines": 0,
@@ -3166,21 +3179,10 @@
           "prs_merged": 0
         },
         "2024-03-09": {
-          "commits": 5,
-          "java_lines": 3329,
+          "commits": 3,
+          "java_lines": 3000,
           "gaml_lines": 0,
           "other_lines": 9,
-          "wiki_lines": 0,
-          "issues_opened": 0,
-          "issues_closed": 0,
-          "prs_opened": 0,
-          "prs_merged": 0
-        },
-        "2024-03-08": {
-          "commits": 1,
-          "java_lines": 0,
-          "gaml_lines": 0,
-          "other_lines": 6,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
@@ -3498,10 +3500,10 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 873,
-          "java_lines": 1218505,
+          "commits": 871,
+          "java_lines": 1218888,
           "gaml_lines": 14246,
-          "other_lines": 127870,
+          "other_lines": 127864,
           "wiki_lines": 0,
           "issues_opened": 26,
           "issues_closed": 14,
@@ -3521,7 +3523,7 @@
       "other_lines": 10882,
       "wiki_lines": 0,
       "issues_opened": 283,
-      "issues_closed": 162,
+      "issues_closed": 164,
       "prs_opened": 53,
       "prs_merged": 48,
       "other_top_ext": ".py",
@@ -5473,6 +5475,28 @@
           "prs_opened": 0,
           "prs_merged": 0
         },
+        "2026-04-30": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-05-01": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 1,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
         "2026-01-12": {
           "commits": 0,
           "java_lines": 0,
@@ -6681,7 +6705,7 @@
           "other_lines": 3910,
           "wiki_lines": 0,
           "issues_opened": 233,
-          "issues_closed": 133,
+          "issues_closed": 135,
           "prs_opened": 53,
           "prs_merged": 48
         },
@@ -12333,7 +12357,7 @@
           "prs_merged": 0
         }
       },
-      "global_score": 0.4554
+      "global_score": 0.4527
     },
     {
       "login": "Vezonne",
@@ -13444,17 +13468,28 @@
       "login": "Copilot",
       "avatar_url": "https://avatars.githubusercontent.com/in/1143301?v=4",
       "html_url": "https://github.com/apps/copilot-swe-agent",
-      "commits": 16,
-      "java_lines": 410,
+      "commits": 18,
+      "java_lines": 438,
       "gaml_lines": 0,
       "other_lines": 0,
       "wiki_lines": 0,
       "issues_opened": 0,
       "issues_closed": 0,
-      "prs_opened": 13,
-      "prs_merged": 8,
+      "prs_opened": 14,
+      "prs_merged": 9,
       "other_top_ext": "",
       "timeline": {
+        "2026-04-30": {
+          "commits": 2,
+          "java_lines": 28,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 1,
+          "prs_merged": 1
+        },
         "2026-04-10": {
           "commits": 2,
           "java_lines": 18,
@@ -13513,18 +13548,18 @@
       },
       "per_repo": {
         "gama-platform/gama": {
-          "commits": 16,
-          "java_lines": 410,
+          "commits": 18,
+          "java_lines": 438,
           "gaml_lines": 0,
           "other_lines": 0,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,
-          "prs_opened": 13,
-          "prs_merged": 8
+          "prs_opened": 14,
+          "prs_merged": 9
         }
       },
-      "global_score": 0.2574
+      "global_score": 0.2601
     },
     {
       "login": "my.gama.bot@gmail.com",
@@ -17011,10 +17046,10 @@
       "login": "actions-user",
       "avatar_url": "https://avatars.githubusercontent.com/u/65916846?v=4",
       "html_url": "https://github.com/actions-user",
-      "commits": 28,
+      "commits": 29,
       "java_lines": 0,
       "gaml_lines": 0,
-      "other_lines": 56,
+      "other_lines": 58,
       "wiki_lines": 0,
       "issues_opened": 0,
       "issues_closed": 0,
@@ -17022,6 +17057,17 @@
       "prs_merged": 0,
       "other_top_ext": ".txt",
       "timeline": {
+        "2026-05-01": {
+          "commits": 1,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 2,
+          "wiki_lines": 0,
+          "issues_opened": 0,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
         "2026-04-01": {
           "commits": 1,
           "java_lines": 0,
@@ -17333,10 +17379,10 @@
       },
       "per_repo": {
         "gama-platform/gama.docker": {
-          "commits": 28,
+          "commits": 29,
           "java_lines": 0,
           "gaml_lines": 0,
-          "other_lines": 56,
+          "other_lines": 58,
           "wiki_lines": 0,
           "issues_opened": 0,
           "issues_closed": 0,

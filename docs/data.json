@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-06T07:16:11.042477+00:00",
+  "generated_at": "2026-05-07T07:18:58.442297+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -634,7 +634,8 @@
     "2026-05-03",
     "2026-05-04",
     "2026-05-05",
-    "2026-05-06"
+    "2026-05-06",
+    "2026-05-07"
   ],
   "repos": [
     "gama-platform/.github",
@@ -9882,7 +9883,7 @@
       "other_lines": 205756,
       "wiki_lines": 0,
       "issues_opened": 73,
-      "issues_closed": 50,
+      "issues_closed": 49,
       "prs_opened": 0,
       "prs_merged": 0,
       "other_top_ext": ".js",
@@ -10092,7 +10093,7 @@
           "other_lines": 0,
           "wiki_lines": 0,
           "issues_opened": 3,
-          "issues_closed": 1,
+          "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 0
         },
@@ -10875,7 +10876,7 @@
           "other_lines": 14937,
           "wiki_lines": 0,
           "issues_opened": 51,
-          "issues_closed": 36,
+          "issues_closed": 35,
           "prs_opened": 0,
           "prs_merged": 0
         },
@@ -13068,7 +13069,7 @@
       "gaml_lines": 944,
       "other_lines": 1,
       "wiki_lines": 0,
-      "issues_opened": 49,
+      "issues_opened": 50,
       "issues_closed": 33,
       "prs_opened": 0,
       "prs_merged": 0,
@@ -13136,6 +13137,17 @@
           "other_lines": 0,
           "wiki_lines": 0,
           "issues_opened": 7,
+          "issues_closed": 0,
+          "prs_opened": 0,
+          "prs_merged": 0
+        },
+        "2026-05-07": {
+          "commits": 0,
+          "java_lines": 0,
+          "gaml_lines": 0,
+          "other_lines": 0,
+          "wiki_lines": 0,
+          "issues_opened": 1,
           "issues_closed": 0,
           "prs_opened": 0,
           "prs_merged": 0
@@ -13412,7 +13424,7 @@
           "gaml_lines": 944,
           "other_lines": 1,
           "wiki_lines": 0,
-          "issues_opened": 47,
+          "issues_opened": 48,
           "issues_closed": 33,
           "prs_opened": 0,
           "prs_merged": 0

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T06:56:03.312194+00:00",
+  "generated_at": "2026-05-10T07:12:59.896967+00:00",
   "config": {
     "org": "gama-platform",
     "repos": [
@@ -661,8 +661,8 @@
       "login": "AlexisDrogoul",
       "avatar_url": "https://avatars.githubusercontent.com/u/579256?v=4",
       "html_url": "https://github.com/AlexisDrogoul",
-      "commits": 983,
-      "java_lines": 1238497,
+      "commits": 982,
+      "java_lines": 1238187,
       "gaml_lines": 14290,
       "other_lines": 136265,
       "wiki_lines": 0,
@@ -3060,8 +3060,8 @@
           "prs_merged": 0
         },
         "2024-04-19": {
-          "commits": 2,
-          "java_lines": 475,
+          "commits": 1,
+          "java_lines": 165,
           "gaml_lines": 0,
           "other_lines": 0,
           "wiki_lines": 0,
@@ -3392,8 +3392,8 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 890,
-          "java_lines": 1215630,
+          "commits": 889,
+          "java_lines": 1215320,
           "gaml_lines": 14249,
           "other_lines": 128032,
           "wiki_lines": 0,
@@ -3409,8 +3409,8 @@
       "login": "lesquoyb",
       "avatar_url": "https://avatars.githubusercontent.com/u/6374469?v=4",
       "html_url": "https://github.com/lesquoyb",
-      "commits": 325,
-      "java_lines": 17591,
+      "commits": 326,
+      "java_lines": 17596,
       "gaml_lines": 5595,
       "other_lines": 10912,
       "wiki_lines": 0,
@@ -4279,8 +4279,8 @@
           "prs_merged": 2
         },
         "2025-09-17": {
-          "commits": 3,
-          "java_lines": 5,
+          "commits": 4,
+          "java_lines": 10,
           "gaml_lines": 100,
           "other_lines": 24,
           "wiki_lines": 0,
@@ -6558,8 +6558,8 @@
           "prs_merged": 0
         },
         "gama-platform/gama": {
-          "commits": 244,
-          "java_lines": 17033,
+          "commits": 245,
+          "java_lines": 17038,
           "gaml_lines": 4657,
           "other_lines": 3940,
           "wiki_lines": 0,
